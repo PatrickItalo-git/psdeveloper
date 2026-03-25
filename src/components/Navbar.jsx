@@ -113,7 +113,7 @@ const Navbar = () => {
           >
             <SpiderIcon size={24} color="var(--primary-color)" style={{ marginRight: '8px' }} />
             <span style={{ position: 'relative' }}>
-              PP<span style={{ color: 'var(--primary-color)' }}>D</span>
+              P.<span style={{ color: 'var(--primary-color)' }}>DEV</span>
               <motion.div
                 style={{
                   position: 'absolute',

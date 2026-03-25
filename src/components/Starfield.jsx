@@ -77,9 +77,9 @@ const Starfield = () => {
         opacity: 0.8
       }} />
 
-      <StarLayer count={400} speed={120} size={1} />
-      <StarLayer count={150} speed={80} size={2} />
-      <StarLayer count={40} speed={40} size={3} />
+      <StarLayer count={200} speed={120} size={1} />
+      <StarLayer count={75} speed={80} size={2} />
+      <StarLayer count={20} speed={40} size={3} />
       
       {/* Decorative Nebula Clouds */}
       <motion.div 

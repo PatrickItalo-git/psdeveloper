@@ -143,7 +143,7 @@ const Hero = () => {
           fontWeight: 900,
           perspective: '1000px'
         }}>
-          Patrick <span className="text-gradient" style={{ display: 'block' }}>Souza</span>
+          PETER <span className="text-gradient" style={{ display: 'block' }}>DEV</span>
         </h1>
 
         <span style={{
@@ -157,7 +157,7 @@ const Hero = () => {
           minHeight: '2.5rem',
           textShadow: '0 0 20px rgba(240, 19, 30, 0.3)'
         }}>
-          <Typewriter phrases={['Desenvolvedor Web', 'Criação de Sites em Francisco Beltrão', 'Professor Universitário', 'Arquiteto de Soluções']} />
+          <Typewriter phrases={['Criação de Sites Profissionais', 'Design de Alta Conversão', 'Sistemas Web Sob Medida', 'Especialista em Francisco Beltrão']} />
         </span>
 
         <p style={{
@@ -168,7 +168,7 @@ const Hero = () => {
           lineHeight: 1.6,
           margin: '0 auto 3rem'
         }}>
-          Desenvolvedor de Software focado em construir soluções robustas e experiências digitais imersivas para o próximo nível.
+          Estrategista digital focado em construir soluções tecnológicas que escalam negócios e criam experiências imersivas.
         </p>
 
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -189,7 +189,7 @@ const Hero = () => {
               boxShadow: '0 10px 30px -10px var(--primary-color)'
             }}
           >
-            Explorar Órbita <ArrowRight size={20} />
+            Ver Soluções <ArrowRight size={20} />
           </motion.a>
 
           <motion.a
@@ -205,7 +205,7 @@ const Hero = () => {
               backdropFilter: 'blur(10px)'
             }}
           >
-            Frequência de Contato
+            Falar com Especialista
           </motion.a>
         </div>
       </motion.div>

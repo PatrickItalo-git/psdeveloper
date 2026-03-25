@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-          <p>© {new Date().getFullYear()} Patrick Souza. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Peter Dev. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

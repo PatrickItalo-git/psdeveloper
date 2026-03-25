@@ -3,30 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Cursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [isClicking, setIsClicking] = useState(false);
-  const [bursts, setBursts] = useState([]);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleClick = (e) => {
-      const id = Date.now();
-      setBursts(prev => [...prev.slice(-5), { id, x: e.clientX, y: e.clientY }]);
-      setIsClicking(true);
-      setTimeout(() => setIsClicking(false), 150);
-      setTimeout(() => {
-        setBursts(prev => prev.filter(b => b.id !== id));
-      }, 1000);
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleClick);
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleClick);
     };
   }, []);
 
@@ -38,7 +24,6 @@ const Cursor = () => {
   animate={{
     x: mousePosition.x - 100,
     y: mousePosition.y - 100,
-    scale: isClicking ? 1.5 : 1,
   }}
   transition={{ type: 'spring', damping: 30, stiffness: 200, mass: 0.5 }}
   style={{
@@ -68,30 +53,6 @@ const Cursor = () => {
     boxShadow: '0 0 10px #fff, 0 0 20px var(--primary-color)',
   }}
 />
-
-        {/* Supernova Bursts */}
-        <AnimatePresence>
-          {bursts.map(burst => (
-            <motion.div
-              key={burst.id}
-              initial={{ opacity: 1, scale: 0 }}
-              animate={{ opacity: 0, scale: 4 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              style={{
-                position: 'absolute',
-                top: burst.y - 50,
-                left: burst.x - 50,
-                width: '100px',
-                height: '100px',
-                border: '2px solid rgba(240, 19, 30, 0.5)',
-                borderRadius: '50%',
-                boxShadow: '0 0 30px rgba(240, 19, 30, 0.3)',
-                pointerEvents: 'none',
-              }}
-            />
-          ))}
-        </AnimatePresence>
       </div>
     </>
   );

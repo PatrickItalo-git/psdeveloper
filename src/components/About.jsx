@@ -32,7 +32,7 @@ const About = () => {
           </div>
           
           <div style={{ marginTop: '2.5rem', borderRadius: '24px', overflow: 'hidden', border: '1px solid rgba(240, 19, 30, 0.2)', maxWidth: '400px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
-            <img src={profileImg} alt="Patrick Souza" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
+            <img src={profileImg} alt="Peter Dev" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} loading="lazy" decoding="async" />
           </div>
         </motion.div>
 
