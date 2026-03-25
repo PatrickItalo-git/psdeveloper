@@ -16,8 +16,8 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <span style={{ color: 'var(--primary-color)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.8rem' }}>Sobre Mim</span>
-          <h2 style={{ fontSize: '2.5rem', marginTop: '1rem', marginBottom: '2rem' }}>O código por trás <span style={{ color: 'var(--primary-color)' }}>do código</span></h2>
+          <span style={{ color: 'var(--primary-color)', fontWeight: 600, textTransform: 'uppercase', fontSize: '0.8rem' }}>Especialista em Francisco Beltrão e Sudoeste do PR</span>
+          <h2 style={{ fontSize: '2.5rem', marginTop: '1rem', marginBottom: '2rem' }}>O profissional para <span style={{ color: 'var(--primary-color)' }}>o seu site</span></h2>
           
           <div style={{ color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <p>

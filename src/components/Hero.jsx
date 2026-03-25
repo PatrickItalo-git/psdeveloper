@@ -157,7 +157,7 @@ const Hero = () => {
           minHeight: '2.5rem',
           textShadow: '0 0 20px rgba(240, 19, 30, 0.3)'
         }}>
-          <Typewriter phrases={['Desenvolvedor Web', 'Professor Universitário', 'Arquiteto de Soluções']} />
+          <Typewriter phrases={['Desenvolvedor Web', 'Criação de Sites em Francisco Beltrão', 'Professor Universitário', 'Arquiteto de Soluções']} />
         </span>
 
         <p style={{

@@ -17,7 +17,7 @@ const Footer = () => {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '4rem', flexWrap: 'wrap' }}>
           <SocialLink icon={<MessageSquare />} label="WhatsApp" href="https://wa.me/5546999011726" />
           <SocialLink icon={<Linkedin />} label="LinkedIn" href="https://www.linkedin.com/in/patricksouzadev/" />
-          <SocialLink icon={<Instagram />} label="Instagram" href="#" />
+          <SocialLink icon={<Instagram />} label="Instagram" href="https://www.instagram.com/peterp.dev?igsh=a2RhZmVpZm40Zmth&utm_source=qr" />
           <SocialLink icon={<Mail />} label="E-mail" href="mailto:PATRICK.SOUZA.DEV@GMAIL.COM" />
         </div>
 
