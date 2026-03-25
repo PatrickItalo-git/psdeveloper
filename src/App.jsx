@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import Services from './components/Services.jsx';
+import Portfolio from './components/Portfolio.jsx';
 import About from './components/About.jsx';
 import Tech from './components/Tech.jsx';
 import Footer from './components/Footer.jsx';
@@ -19,6 +20,7 @@ function App() {
       <main>
         <Hero />
         <Services />
+        <Portfolio />
         <About />
         <CurrentRoles />
         <Tech />

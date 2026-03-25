@@ -30,7 +30,8 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Início', href: '#inicio', icon: Home },
     { name: 'Sobre', href: '#sobre', icon: User },
-    { name: 'Entrega', href: '#servicos', icon: CheckCircle },
+    { name: 'Serviços', href: '#servicos', icon: CheckCircle },
+    { name: 'Portfólio', href: '#portfolio', icon: Zap },
     { name: 'Contato', href: '#contato', icon: Mail },
   ];
 

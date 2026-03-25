@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroMundi - Cardápio Digital Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <span class="since">DESDE 2012</span>
+            <h1>Gastro<span>Mundi</span></h1>
+            <p>Uma jornada sensorial através da alta gastronomia.</p>
+            <div class="scroll-indicator"><i data-lucide="chevron-down"></i></div>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+
+    <nav class="categories">
+        <button class="cat-btn active" data-category="all">Todos</button>
+        <button class="cat-btn" data-category="starters">Entradas</button>
+        <button class="cat-btn" data-category="mains">Principais</button>
+        <button class="cat-btn" data-category="drinks">Bebidas</button>
+    </nav>
+
+    <main class="menu-grid">
+        <!-- Item 1 -->
+        <div class="menu-item" data-category="starters">
+            <div class="item-img"><img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&q=80&w=600" alt="Carpaccio"></div>
+            <div class="item-info">
+                <h3>Carpaccio di Manzo <span>R$ 68</span></h3>
+                <p>Finíssimas fatias de filé mignon, lascas de grana padano e alcaparras.</p>
+                <button class="add-btn"><i data-lucide="plus"></i></button>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="menu-item" data-category="mains">
+            <div class="item-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="Short Rib"></div>
+            <div class="item-info">
+                <h3>Short Rib Angus <span>R$ 145</span></h3>
+                <p>Corte nobre grelhado na brasa, servido com risoto de açafrão.</p>
+                <button class="add-btn"><i data-lucide="plus"></i></button>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="menu-item" data-category="drinks">
+            <div class="item-img"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=600" alt="Drinks"></div>
+            <div class="item-info">
+                <h3>Signature Martini <span>R$ 42</span></h3>
+                <p>Gin premium, vermute seco e infusão de flor de sabugueiro.</p>
+                <button class="add-btn"><i data-lucide="plus"></i></button>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="menu-item" data-category="mains">
+            <div class="item-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=600" alt="Salmon"></div>
+            <div class="item-info">
+                <h3>Salmão Nórdico <span>R$ 112</span></h3>
+                <p>Selado em crosta de ervas, purê de ervilhas e confit de tomate.</p>
+                <button class="add-btn"><i data-lucide="plus"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cart-bar">
+        <div class="cart-info">
+            <i data-lucide="shopping-bag"></i>
+            <span>Seu Pedido (0 itens)</span>
+        </div>
+        <div class="total">R$ 0,00</div>
+        <button class="finish-btn">Finalizar</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
