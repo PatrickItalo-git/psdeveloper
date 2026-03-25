@@ -68,8 +68,8 @@ const Services = () => {
             }}
             whileHover={{ 
               y: -10,
-              boxShadow: '0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(124, 58, 237, 0.2)',
-              borderColor: 'rgba(124, 58, 237, 0.4)'
+              boxShadow: '0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(240, 19, 30, 0.2)',
+              borderColor: 'rgba(240, 19, 30, 0.4)'
             }}
           >
             {/* Background Glow */}
@@ -79,7 +79,7 @@ const Services = () => {
               right: '-20%',
               width: '120px',
               height: '120px',
-              background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(240, 19, 30, 0.15) 0%, transparent 70%)',
               filter: 'blur(20px)',
               zIndex: 0
             }} />
@@ -87,8 +87,8 @@ const Services = () => {
             <div style={{
               width: '56px',
               height: '56px',
-              background: 'rgba(124, 58, 237, 0.1)',
-              border: '1px solid rgba(124, 58, 237, 0.2)',
+              background: 'rgba(240, 19, 30, 0.1)',
+              border: '1px solid rgba(240, 19, 30, 0.2)',
               borderRadius: '16px',
               display: 'flex',
               alignItems: 'center',

@@ -84,7 +84,7 @@ const Hero = () => {
         position: 'absolute',
         width: '600px',
         height: '600px',
-        background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(240, 19, 30, 0.15) 0%, transparent 70%)',
         top: '10%',
         left: '20%',
         zIndex: -1,
@@ -97,7 +97,7 @@ const Hero = () => {
         position: 'absolute',
         width: '500px',
         height: '500px',
-        background: 'radial-gradient(circle, rgba(59, 7, 100, 0.2) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(0, 51, 160, 0.2) 0%, transparent 70%)',
         bottom: '10%',
         right: '15%',
         zIndex: -1,
@@ -120,10 +120,10 @@ const Hero = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            background: 'rgba(124, 58, 237, 0.1)',
+            background: 'rgba(240, 19, 30, 0.1)',
             padding: '0.5rem 1rem',
             borderRadius: '50px',
-            border: '1px solid rgba(124, 58, 237, 0.2)',
+            border: '1px solid rgba(240, 19, 30, 0.2)',
             color: 'var(--accent-color)',
             fontSize: '0.8rem',
             fontWeight: 700,
@@ -155,7 +155,7 @@ const Hero = () => {
           marginBottom: '2.5rem',
           display: 'block',
           minHeight: '2.5rem',
-          textShadow: '0 0 20px rgba(124, 58, 237, 0.3)'
+          textShadow: '0 0 20px rgba(240, 19, 30, 0.3)'
         }}>
           <Typewriter phrases={['Desenvolvedor Web', 'Professor Universitário', 'Arquiteto de Soluções']} />
         </span>

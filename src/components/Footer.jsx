@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer id="contato" style={{
       padding: '100px 20px 40px',
-      background: 'linear-gradient(to top, rgba(124, 58, 237, 0.05), transparent)',
-      borderTop: '1px solid rgba(124, 58, 237, 0.1)'
+      background: 'linear-gradient(to top, rgba(240, 19, 30, 0.05), transparent)',
+      borderTop: '1px solid rgba(240, 19, 30, 0.1)'
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
         <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Vamos criar algo <span style={{ color: 'var(--primary-color)' }}>extraordinário?</span></h2>

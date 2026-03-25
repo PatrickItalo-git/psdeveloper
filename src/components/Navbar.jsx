@@ -62,7 +62,7 @@ const Navbar = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: isMobile ? '0.5rem' : '2rem',
-          boxShadow: isScrolled ? '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(124, 58, 237, 0.1)' : '0 4px 20px rgba(0, 0, 0, 0.3)',
+          boxShadow: isScrolled ? '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(240, 19, 30, 0.1)' : '0 4px 20px rgba(0, 0, 0, 0.3)',
           maxWidth: '800px',
           width: 'calc(100% - 20px)',
           position: 'relative',
@@ -79,7 +79,7 @@ const Navbar = () => {
             left: 0,
             width: '100%',
             height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(240, 19, 30, 0.2), transparent)',
             zIndex: -1
           }}
         />
@@ -91,7 +91,7 @@ const Navbar = () => {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle at 50% 50%, rgba(240, 19, 30, 0.1) 0%, transparent 70%)',
             zIndex: -1
           }}
         />
@@ -163,7 +163,7 @@ const Navbar = () => {
                     background: 'rgba(255, 255, 255, 0.05)',
                     borderRadius: '12px',
                     zIndex: -1,
-                    border: '1px solid rgba(124, 58, 237, 0.2)'
+                    border: '1px solid rgba(240, 19, 30, 0.2)'
                   }}
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />

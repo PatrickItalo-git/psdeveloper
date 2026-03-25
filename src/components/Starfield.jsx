@@ -95,7 +95,7 @@ const Starfield = () => {
           left: '-10%',
           width: '60%',
           height: '60%',
-          background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(240, 19, 30, 0.15) 0%, transparent 70%)',
           filter: 'blur(60px)',
           zIndex: -2,
           willChange: 'transform'
@@ -115,7 +115,7 @@ const Starfield = () => {
           right: '-10%',
           width: '70%',
           height: '70%',
-          background: 'radial-gradient(circle, rgba(59, 7, 100, 0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 51, 160, 0.15) 0%, transparent 70%)',
           filter: 'blur(80px)',
           zIndex: -2,
           willChange: 'transform'

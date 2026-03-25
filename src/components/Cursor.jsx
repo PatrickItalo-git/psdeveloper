@@ -45,7 +45,7 @@ const Cursor = () => {
     position: 'absolute',
     width: '200px',
     height: '200px',
-    background: 'radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%)',
+    background: 'radial-gradient(circle, rgba(240, 19, 30, 0.2) 0%, transparent 70%)',
     borderRadius: '50%',
     filter: 'blur(15px)',
     mixBlendMode: 'screen',
@@ -84,9 +84,9 @@ const Cursor = () => {
                 left: burst.x - 50,
                 width: '100px',
                 height: '100px',
-                border: '2px solid rgba(124, 58, 237, 0.5)',
+                border: '2px solid rgba(240, 19, 30, 0.5)',
                 borderRadius: '50%',
-                boxShadow: '0 0 30px rgba(124, 58, 237, 0.3)',
+                boxShadow: '0 0 30px rgba(240, 19, 30, 0.3)',
                 pointerEvents: 'none',
               }}
             />

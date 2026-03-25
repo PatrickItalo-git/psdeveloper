@@ -8,7 +8,7 @@ const projects = [
     subtitle: 'Sistema de Gestão para Salões',
     desc: 'Sistema completo que substituiu processos manuais, tornando o agendamento e o financeiro mais rápidos e eficientes.',
     techs: ['React.js', 'Node.js', 'PostgreSQL', 'Express'],
-    color: '#7c3aed',
+    color: '#f0131e',
     icon: Cpu
   },
   {
@@ -16,7 +16,7 @@ const projects = [
     subtitle: 'Galeria Online Interativa',
     desc: 'Projeto de galeria de fotos online interativa, permitindo acesso via QR Code e compartilhamento instantâneo em eventos.',
     techs: ['React.js', 'CSS3', 'Responsive Design'],
-    color: '#a78bfa',
+    color: '#ff4d4d',
     icon: Globe
   },
   {
@@ -24,7 +24,7 @@ const projects = [
     subtitle: 'Google Maps + Puppeteer',
     desc: 'Automação para extração de informações públicas de estabelecimentos comerciais para prospecção estratégica.',
     techs: ['Node.js', 'Puppeteer', 'Automation'],
-    color: '#4c1d95',
+    color: '#0033a0',
     icon: Code
   }
 ];
@@ -62,7 +62,7 @@ const Projects = () => {
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
-              border: '1px solid rgba(124, 58, 237, 0.1)',
+              border: '1px solid rgba(240, 19, 30, 0.1)',
               transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
               position: 'relative',
               background: 'rgba(15, 15, 20, 0.4)',
@@ -151,11 +151,11 @@ const Projects = () => {
                 {project.techs.map(tech => (
                   <span key={tech} style={{
                     fontSize: '0.75rem',
-                    background: 'rgba(124, 58, 237, 0.05)',
+                    background: 'rgba(240, 19, 30, 0.05)',
                     padding: '0.4rem 1rem',
                     borderRadius: '8px',
                     color: 'var(--accent-color)',
-                    border: '1px solid rgba(124, 58, 237, 0.1)',
+                    border: '1px solid rgba(240, 19, 30, 0.1)',
                     fontWeight: 600
                   }}>
                     {tech}

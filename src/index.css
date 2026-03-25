@@ -1,11 +1,11 @@
 :root {
   --bg-color: #050505;
-  --primary-color: #7c3aed; /* Vibrant Purple */
-  --primary-glow: rgba(124, 58, 237, 0.4);
-  --secondary-color: #3b0764; /* Darker Purple */
+  --primary-color: #f0131e; /* Marvel/Spidey Red */
+  --primary-glow: rgba(240, 19, 30, 0.4);
+  --secondary-color: #0033a0; /* Spidey Blue */
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
-  --accent-color: #a78bfa;
+  --accent-color: #ff4d4d; /* Lighter Red/Vibrant Orange */
 }
 
 * {

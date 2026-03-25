@@ -34,7 +34,7 @@ const CurrentRoles = () => {
             gap: '1.5rem',
             padding: '2rem',
             borderRadius: '24px',
-            border: '1px solid rgba(124, 58, 237, 0.2)'
+            border: '1px solid rgba(240, 19, 30, 0.2)'
           }}
         >
           <div style={{ overflow: 'hidden', borderRadius: '16px', maxHeight: '250px' }}>
@@ -69,7 +69,7 @@ const CurrentRoles = () => {
             gap: '1.5rem',
             padding: '2rem',
             borderRadius: '24px',
-            border: '1px solid rgba(124, 58, 237, 0.2)'
+            border: '1px solid rgba(240, 19, 30, 0.2)'
           }}
         >
           <div style={{ overflow: 'hidden', borderRadius: '16px', maxHeight: '250px' }}>
