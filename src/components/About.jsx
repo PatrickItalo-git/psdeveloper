@@ -51,14 +51,14 @@ const About = () => {
               <li style={{ borderLeft: '2px solid var(--secondary-color)', paddingLeft: '1rem', position: 'relative' }}>
                 <p style={{ fontWeight: 600, color: '#fff' }}>Pós-Graduação Dev Web Full Stack</p>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>Anhanguera | 2025</p>
-                <a href="/certificados/Certificado-2.pdf" target="_blank" style={{ fontSize: '0.75rem', color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <a href="/certificados/Certificado-Pos-Graduacao.pdf" target="_blank" style={{ fontSize: '0.75rem', color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   Ver Certificado <ArrowUpRight size={12} />
                 </a>
               </li>
               <li style={{ borderLeft: '2px solid var(--secondary-color)', paddingLeft: '1rem', position: 'relative' }}>
                 <p style={{ fontWeight: 600, color: '#fff' }}>Análise e Desenvolvimento de Sistemas</p>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>UNIPAR | 2024</p>
-                <a href="/certificados/Certificado Técnologo-2.pdf" target="_blank" style={{ fontSize: '0.75rem', color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <a href="/certificados/Certificado-Tecnologo.pdf" target="_blank" style={{ fontSize: '0.75rem', color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   Ver Certificado <ArrowUpRight size={12} />
                 </a>
               </li>
