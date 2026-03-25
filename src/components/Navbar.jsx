@@ -11,7 +11,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    
+
     const scrollUnsubscribe = scrollY.on("change", (latest) => {
       // Throttled scroll check
       if (Math.abs(latest - (isScrolled ? 51 : 0)) > 20) {
@@ -46,7 +46,7 @@ const Navbar = () => {
       padding: '0 10px',
       transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
     }}>
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', damping: 20, stiffness: 100 }}
@@ -95,22 +95,22 @@ const Navbar = () => {
           }}
         />
 
-        <motion.div 
+        <motion.div
           whileHover={{ scale: 1.05 }}
-          style={{ 
-            fontSize: '1.5rem', 
-            fontWeight: 900, 
-            color: '#fff', 
-            fontFamily: 'Outfit', 
-            display: 'flex', 
+          style={{
+            fontSize: '1.5rem',
+            fontWeight: 900,
+            color: '#fff',
+            fontFamily: 'Outfit',
+            display: 'flex',
             alignItems: 'center',
             letterSpacing: '-1px'
           }}
         >
           <Zap size={20} style={{ color: 'var(--primary-color)', marginRight: '8px' }} />
           <span style={{ position: 'relative' }}>
-            P<span style={{ color: 'var(--primary-color)' }}>S</span>
-            <motion.div 
+            PP<span style={{ color: 'var(--primary-color)' }}>D</span>
+            <motion.div
               style={{
                 position: 'absolute',
                 bottom: -2,
@@ -147,12 +147,12 @@ const Navbar = () => {
                 zIndex: 1
               }}
             >
-              <link.icon size={16} style={{ 
+              <link.icon size={16} style={{
                 color: hoveredLink === link.name ? 'var(--primary-color)' : 'inherit',
                 transition: 'color 0.3s'
               }} />
               <span className="nav-text">{link.name}</span>
-              
+
               {hoveredLink === link.name && (
                 <motion.div
                   layoutId="nav-bg"
