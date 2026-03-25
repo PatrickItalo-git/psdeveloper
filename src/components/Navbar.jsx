@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Home, User, CheckCircle, Mail, Zap } from 'lucide-react';
+import { Home, User, CheckCircle, Mail, RotateCw } from 'lucide-react';
+import SpiderIcon from './SpiderIcon.jsx';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
     { name: 'Início', href: '#inicio', icon: Home },
     { name: 'Sobre', href: '#sobre', icon: User },
     { name: 'Serviços', href: '#servicos', icon: CheckCircle },
-    { name: 'Portfólio', href: '#portfolio', icon: Zap },
+    { name: 'Portfólio', href: '#portfolio', icon: SpiderIcon },
     { name: 'Contato', href: '#contato', icon: Mail },
   ];
 
@@ -108,7 +109,7 @@ const Navbar = () => {
             letterSpacing: '-1px'
           }}
         >
-          <Zap size={20} style={{ color: 'var(--primary-color)', marginRight: '8px' }} />
+          <SpiderIcon size={24} color="var(--primary-color)" style={{ marginRight: '8px' }} />
           <span style={{ position: 'relative' }}>
             PP<span style={{ color: 'var(--primary-color)' }}>D</span>
             <motion.div

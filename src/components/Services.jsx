@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Layout, BarChart, Zap, Globe, Database } from 'lucide-react';
+import { Layout, BarChart, RotateCw, Globe, Database } from 'lucide-react';
+import SpiderIcon from './SpiderIcon.jsx';
 
 const services = [
   {
@@ -15,7 +16,7 @@ const services = [
   {
     title: 'Automações',
     desc: 'Scripts inteligentes para eliminar tarefas manuais e repetitivas.',
-    icon: Zap
+    icon: SpiderIcon
   },
   {
     title: 'Sistemas Web',
