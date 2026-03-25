@@ -1,10 +1,12 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Home, User, CheckCircle, Mail, RotateCw } from 'lucide-react';
+import { Home, User, CheckCircle, Mail } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import SpiderIcon from './SpiderIcon.jsx';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const { scrollY } = useScroll();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -14,7 +16,6 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
 
     const scrollUnsubscribe = scrollY.on("change", (latest) => {
-      // Throttled scroll check
       if (Math.abs(latest - (isScrolled ? 51 : 0)) > 20) {
         setIsScrolled(latest > 50);
       }
@@ -24,16 +25,16 @@ const Navbar = () => {
       window.removeEventListener('resize', handleResize);
       scrollUnsubscribe();
     };
-  }, [scrollY]);
+  }, [scrollY, isScrolled]);
 
   const isMobile = windowWidth < 768;
 
   const navLinks = [
-    { name: 'Início', href: '#inicio', icon: Home },
-    { name: 'Sobre', href: '#sobre', icon: User },
-    { name: 'Serviços', href: '#servicos', icon: CheckCircle },
-    { name: 'Portfólio', href: '#portfolio', icon: SpiderIcon },
-    { name: 'Contato', href: '#contato', icon: Mail },
+    { name: 'Início', href: '/', icon: Home },
+    { name: 'Sobre', href: '/sobre', icon: User },
+    { name: 'Serviços', href: '/#servicos', icon: CheckCircle },
+    { name: 'Portfólio', href: '/#portfolio', icon: SpiderIcon },
+    { name: 'Contato', href: '/#contato', icon: Mail },
   ];
 
   return (
@@ -97,46 +98,48 @@ const Navbar = () => {
           }}
         />
 
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 900,
-            color: '#fff',
-            fontFamily: 'Outfit',
-            display: 'flex',
-            alignItems: 'center',
-            letterSpacing: '-1px'
-          }}
-        >
-          <SpiderIcon size={24} color="var(--primary-color)" style={{ marginRight: '8px' }} />
-          <span style={{ position: 'relative' }}>
-            PP<span style={{ color: 'var(--primary-color)' }}>D</span>
-            <motion.div
-              style={{
-                position: 'absolute',
-                bottom: -2,
-                left: 0,
-                width: '100%',
-                height: '2px',
-                background: 'var(--primary-color)',
-                borderRadius: '2px'
-              }}
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-            />
-          </span>
-        </motion.div>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 900,
+              color: '#fff',
+              fontFamily: 'Outfit',
+              display: 'flex',
+              alignItems: 'center',
+              letterSpacing: '-1px'
+            }}
+          >
+            <SpiderIcon size={24} color="var(--primary-color)" style={{ marginRight: '8px' }} />
+            <span style={{ position: 'relative' }}>
+              PP<span style={{ color: 'var(--primary-color)' }}>D</span>
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  bottom: -2,
+                  left: 0,
+                  width: '100%',
+                  height: '2px',
+                  background: 'var(--primary-color)',
+                  borderRadius: '2px'
+                }}
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+              />
+            </span>
+          </motion.div>
+        </Link>
 
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', position: 'relative' }}>
           {navLinks.map((link, idx) => (
-            <motion.a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onMouseEnter={() => setHoveredLink(link.name)}
               onMouseLeave={() => setHoveredLink(null)}
               style={{
-                color: hoveredLink === link.name ? '#fff' : 'var(--text-secondary)',
+                color: (location.pathname === link.href || (link.href.startsWith('/#') && location.pathname === '/')) ? '#fff' : 'var(--text-secondary)',
                 fontSize: '0.85rem',
                 fontWeight: 600,
                 display: 'flex',
@@ -146,11 +149,12 @@ const Navbar = () => {
                 borderRadius: '12px',
                 transition: 'all 0.3s ease',
                 position: 'relative',
-                zIndex: 1
+                zIndex: 1,
+                textDecoration: 'none'
               }}
             >
               <link.icon size={16} style={{
-                color: hoveredLink === link.name ? 'var(--primary-color)' : 'inherit',
+                color: (hoveredLink === link.name || location.pathname === link.href) ? 'var(--primary-color)' : 'inherit',
                 transition: 'color 0.3s'
               }} />
               <span className="nav-text">{link.name}</span>
@@ -169,7 +173,7 @@ const Navbar = () => {
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
-            </motion.a>
+            </Link>
           ))}
         </div>
       </motion.nav>
