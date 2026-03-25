@@ -64,8 +64,8 @@ const Hero = () => {
   };
 
   return (
-    <section 
-      id="inicio" 
+    <section
+      id="inicio"
       onMouseMove={handleMouseMove}
       style={{
         minHeight: '100vh',
@@ -92,7 +92,7 @@ const Hero = () => {
         x: dx,
         y: dy
       }}></motion.div>
-      
+
       <motion.div style={{
         position: 'absolute',
         width: '500px',
@@ -116,9 +116,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
             gap: '0.5rem',
             background: 'rgba(124, 58, 237, 0.1)',
             padding: '0.5rem 1rem',
@@ -159,7 +159,7 @@ const Hero = () => {
         }}>
           <Typewriter phrases={['Desenvolvedor Web', 'Professor Universitário', 'Arquiteto de Soluções']} />
         </span>
-        
+
         <p style={{
           maxWidth: '650px',
           color: 'var(--text-secondary)',
@@ -168,7 +168,7 @@ const Hero = () => {
           lineHeight: 1.6,
           margin: '0 auto 3rem'
         }}>
-          Engenheiro de Software focado em construir soluções robustas e experiências digitais imersivas para o próximo nível.
+          Desenvolvedor de Software focado em construir soluções robustas e experiências digitais imersivas para o próximo nível.
         </p>
 
         <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -191,7 +191,7 @@ const Hero = () => {
           >
             Explorar Órbita <ArrowRight size={20} />
           </motion.a>
-          
+
           <motion.a
             href="#contato"
             whileHover={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.3)' }}
@@ -213,9 +213,9 @@ const Hero = () => {
       <motion.div
         animate={{ y: [0, 15, 0] }}
         transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-        style={{ 
-          position: 'absolute', 
-          bottom: '40px', 
+        style={{
+          position: 'absolute',
+          bottom: '40px',
           color: 'var(--primary-color)',
           display: 'flex',
           flexDirection: 'column',
@@ -230,7 +230,7 @@ const Hero = () => {
 
       {/* Subtle Spatial Accents */}
       <motion.div
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3],
         }}
