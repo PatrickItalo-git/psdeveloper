@@ -1,161 +1,173 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Stethoscope, Dumbbell, Megaphone, ShoppingCart, Layout, Utensils } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight } from 'lucide-react';
+
 import imgOdonto from '../images/proj_odonto.png';
 import imgPersonal from '../images/proj_personal.png';
 import imgMarketing from '../images/proj_marketing.png';
-import imgSpace from '../images/proj_space.png';
 import imgSaas from '../images/proj_saas.png';
+import imgSpace from '../images/proj_space.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projectsData = [
-  {
-    title: "Clínica SmileBright",
-    category: "Odontologia",
-    description: "Design premium e clean para uma clínica odontológica de elite.",
-    image: imgOdonto,
-    icon: Stethoscope,
-    color: "#00bcd4",
-    link: "/PROJETOS/clinica-odontologica/index.html"
-  },
-  {
-    title: "Apex Personal",
-    category: "Personal Trainer",
-    description: "Layout de alta performance para treinamento personalizado.",
-    image: imgPersonal,
-    icon: Dumbbell,
-    color: "#ff4d00",
-    link: "/PROJETOS/personal-trainer/index.html"
-  },
-  {
-    title: "Lumina Media",
-    category: "Marketing Digital",
-    description: "Página moderna com glassmorphism para agência de publicidade.",
-    image: imgMarketing,
-    icon: Megaphone,
-    color: "#a855f7",
-    link: "/PROJETOS/agencia-marketing/index.html"
-  },
-  {
-    title: "Nebula Shop",
-    category: "E-commerce Espacial",
-    description: "Loja futurista com efeitos holográficos e espaciais.",
-    image: imgSpace,
-    icon: ShoppingCart,
-    color: "#00f2ff",
-    link: "/PROJETOS/e-commerce-espacial/index.html"
-  },
-  {
-    title: "SyncTask SaaS",
-    category: "Plataforma SaaS",
-    description: "Dashboard minimalista para gestão de produtividade.",
-    image: imgSaas,
-    icon: Layout,
-    color: "#2563eb",
-    link: "/PROJETOS/plataforma-saas/index.html"
-  },
-  {
-    title: "GastroMundi",
-    category: "Cardápio Online",
-    description: "Experiência digital interativa para restaurantes premium.",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1200",
-    icon: Utensils,
-    color: "#c5a059",
-    link: "/PROJETOS/cardapio-digital/index.html"
-  }
+  { title: 'Clínica SmileBright', category: 'Saúde & Bem-estar', description: 'Experiência digital premium para cuidados odontológicos de elite.', image: imgOdonto, link: '#' },
+  { title: 'Apex Personal', category: 'Fitness & Performance', description: 'Plataforma de alta performance para atletas e treinamento personalizado.', image: imgPersonal, link: '#' },
+  { title: 'Lumina Media', category: 'Marketing & Estratégia', description: 'Estratégia digital moderna para marcas globais com foco em conversão.', image: imgMarketing, link: '#' },
+  { title: 'SyncTask SaaS', category: 'Produtividade', description: 'Plataforma de gestão de fluxo de trabalho de próxima geração.', image: imgSaas, link: '#' },
+  { title: 'Starlink Explorer', category: 'Educação & Ciência', description: 'Interface imersiva para visualização de dados espaciais em tempo real.', image: imgSpace, link: '#' },
 ];
 
 const Portfolio = () => {
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header
+      gsap.from('.portfolio-header-line', {
+        scrollTrigger: { trigger: headerRef.current, start: 'top 88%', once: true },
+        scaleX: 0,
+        transformOrigin: 'left center',
+        duration: 0.8,
+        ease: 'power4.inOut',
+      });
+
+      gsap.from('.portfolio-h2-line', {
+        scrollTrigger: { trigger: headerRef.current, start: 'top 85%', once: true },
+        y: '105%',
+        stagger: 0.1,
+        duration: 1.2,
+        ease: 'expo.out',
+      });
+
+      gsap.from('.portfolio-subtitle', {
+        scrollTrigger: { trigger: headerRef.current, start: 'top 82%', once: true },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      // Each project item: clip-path image reveal + text fade
+      containerRef.current.querySelectorAll('.project-item').forEach((item, i) => {
+        const imgWrap = item.querySelector('.project-image-wrapper');
+        const meta = item.querySelector('.project-meta');
+
+        gsap.from(imgWrap, {
+          scrollTrigger: { trigger: item, start: 'top 82%', once: true },
+          clipPath: 'inset(0 100% 0 0)',
+          duration: 1.3,
+          delay: i % 2 === 0 ? 0 : 0.12,
+          ease: 'expo.inOut',
+        });
+
+        gsap.from(meta, {
+          scrollTrigger: { trigger: item, start: 'top 80%', once: true },
+          y: 24,
+          opacity: 0,
+          duration: 0.9,
+          delay: 0.3 + (i % 2 === 0 ? 0 : 0.12),
+          ease: 'power3.out',
+        });
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="portfolio" style={{ padding: '100px 5%', background: '#050505' }}>
-      <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          style={{ fontSize: '3.5rem', fontWeight: 900, color: '#fff', marginBottom: '15px' }}
-        >
-          Meu <span style={{ color: 'var(--primary-color)' }}>Portfólio</span>
-        </motion.h2>
-        <p style={{ color: '#888', fontSize: '1.2rem' }}>Exemplos de diversos nichos</p>
+    <section id="portfolio" ref={containerRef} className="container" style={{ padding: '140px 0' }}>
+      <div ref={headerRef} style={{ marginBottom: '7rem' }}>
+        <div className="portfolio-header-line" style={{ width: '40px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '2.5rem' }} />
+
+        <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.2rem, 5.5vw, 4.5rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
+            <span className="portfolio-h2-line" style={{ display: 'block' }}>TRABALHOS <span className="text-accent">SELECIONADOS</span></span>
+          </h2>
+        </div>
+
+        <p className="portfolio-subtitle" style={{ color: 'var(--text-secondary)', maxWidth: '560px', fontSize: '1.05rem', lineHeight: 1.7 }}>
+          Produtos digitais desenvolvidos com precisão técnica e propósito estratégico para transformar negócios.
+        </p>
       </div>
 
-      <div style={{
+      <div className="portfolio-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-        gap: '40px'
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: 'clamp(3rem, 7vw, 6rem)',
       }}>
         {projectsData.map((project, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-            whileHover={{ y: -15 }}
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderRadius: '30px',
+          <div key={idx} className="project-item" style={{ cursor: 'none' }}>
+            <div className="project-image-wrapper" style={{
+              aspectRatio: '16/10',
               overflow: 'hidden',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
-              position: 'relative'
-            }}
-          >
-            <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
+              backgroundColor: 'var(--gray-dark)',
+              marginBottom: '2rem',
+              position: 'relative',
+              borderRadius: '2px',
+              border: '1px solid var(--border-color)',
+              clipPath: 'inset(0 0% 0 0)',
+            }}>
               <img
                 src={project.image}
                 alt={project.title}
+                className="project-img"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                loading="lazy"
-                decoding="async"
               />
-              <div style={{
+              <div className="project-overlay" style={{
                 position: 'absolute',
                 inset: 0,
-                background: `linear-gradient(to top, #050505, transparent)`,
-                opacity: 0.8
-              }} />
-              <div style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                background: project.color,
-                color: '#fff',
-                padding: '5px 15px',
-                borderRadius: '50px',
-                fontSize: '0.8rem',
-                fontWeight: 700
+                backgroundColor: 'rgba(0,0,0,0.55)',
+                opacity: 0,
+                transition: 'opacity 0.5s ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-                {project.category}
-              </div>
-            </div>
-
-            <div style={{ padding: '30px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                <project.icon style={{ color: project.color }} size={28} />
-                <a href={project.link} target="_blank" rel="noreferrer" style={{ color: '#888' }}>
-                  <ExternalLink size={20} />
-                </a>
-              </div>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginBottom: '10px' }}>{project.title}</h3>
-              <p style={{ color: '#888', marginBottom: '25px', lineHeight: '1.6' }}>{project.description}</p>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{
+                <div className="project-btn" style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--text-primary)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px',
-                  color: project.color,
-                  textDecoration: 'none',
-                  fontWeight: 700,
-                  fontSize: '1rem'
-                }}
-              >
-                VISITAR PROJETO <ExternalLink size={16} />
-              </a>
+                  justifyContent: 'center',
+                  color: 'var(--bg-color)',
+                  transform: 'translateY(20px) scale(0.85)',
+                  transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
+                }}>
+                  <ArrowUpRight size={22} />
+                </div>
+              </div>
             </div>
-          </motion.div>
+
+            <div className="project-meta">
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.22em', marginBottom: '0.6rem', display: 'block' }}>
+                {project.category}
+              </span>
+              <h3 style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+                {project.title}
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '440px' }}>
+                {project.description}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .project-item:hover .project-img { transform: scale(1.06); }
+        .project-item:hover .project-overlay { opacity: 1; }
+        .project-item:hover .project-btn { transform: translateY(0) scale(1); }
+        .project-img { transition: transform 1.1s cubic-bezier(0.16,1,0.3,1); }
+
+        @media (max-width: 768px) {
+          .portfolio-grid { grid-template-columns: 1fr !important; }
+        }
+      ` }} />
     </section>
   );
 };

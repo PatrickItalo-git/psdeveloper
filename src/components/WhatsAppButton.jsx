@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
@@ -7,42 +8,43 @@ const WhatsAppButton = () => {
       href="https://wa.me/5546999011726?text=Olá%20Patrick!%20Gostaria%20de%20fazer%20um%20orçamento."
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       style={{
         position: 'fixed',
         bottom: '30px',
         right: '30px',
-        width: '65px',
-        height: '65px',
-        backgroundColor: '#25D366',
-        color: '#fff',
+        width: '60px',
+        height: '60px',
+        backgroundColor: 'var(--text-primary)',
+        color: 'var(--bg-color)',
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 4px 20px rgba(37, 211, 102, 0.5)',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
         zIndex: 9000,
-        textDecoration: 'none'
+        textDecoration: 'none',
+        border: '1px solid var(--border-color)'
       }}
     >
-      <MessageCircle size={34} />
+      <MessageCircle size={28} />
       
-      {/* Efeito Pulse */}
+      {/* Subtle Border Glow */}
       <span style={{
         position: 'absolute',
         width: '100%',
         height: '100%',
         borderRadius: '50%',
-        border: '2px solid #25D366',
-        animation: 'pulseWpp 2s infinite'
+        border: '1px solid var(--text-primary)',
+        animation: 'pulseMinimal 3s infinite'
       }} />
       <style>{`
-        @keyframes pulseWpp {
-          0% { transform: scale(1); opacity: 0.8; border-width: 2px; }
-          100% { transform: scale(1.6); opacity: 0; border-width: 0px; }
+        @keyframes pulseMinimal {
+          0% { transform: scale(1); opacity: 0.5; }
+          100% { transform: scale(1.4); opacity: 0; }
         }
       `}</style>
     </motion.a>

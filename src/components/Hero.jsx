@@ -1,251 +1,206 @@
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
-import { useState, useEffect } from 'react';
-
-const Typewriter = ({ phrases }) => {
-  const [displayText, setDisplayText] = useState('');
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const typingSpeed = 100;
-  const deletingSpeed = 50;
-  const pauseDuration = 2000;
-
-  useEffect(() => {
-    let timer;
-    const currentPhrase = phrases[phraseIndex];
-
-    if (isDeleting) {
-      if (displayText.length === 0) {
-        setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % phrases.length);
-      } else {
-        timer = setTimeout(() => {
-          setDisplayText(currentPhrase.substring(0, displayText.length - 1));
-        }, deletingSpeed);
-      }
-    } else {
-      if (displayText.length === currentPhrase.length) {
-        timer = setTimeout(() => setIsDeleting(true), pauseDuration);
-      } else {
-        timer = setTimeout(() => {
-          setDisplayText(currentPhrase.substring(0, displayText.length + 1));
-        }, typingSpeed);
-      }
-    }
-
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, phraseIndex, phrases]);
-
-  return (
-    <span style={{ position: 'relative' }}>
-      {displayText}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ repeat: Infinity, duration: 0.8 }}
-        style={{ marginLeft: '2px', display: 'inline-block', width: '2px', background: 'var(--primary-color)' }}
-      >
-        &nbsp;
-      </motion.span>
-    </span>
-  );
-};
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const containerRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const lineRef = useRef(null);
+  const scrollRef = useRef(null);
 
-  const springConfig = { damping: 25, stiffness: 150 };
-  const dx = useSpring(useTransform(mouseX, [0, window.innerWidth], [-20, 20]), springConfig);
-  const dy = useSpring(useTransform(mouseY, [0, window.innerHeight], [-20, 20]), springConfig);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set([subtitleRef.current, textRef.current, buttonsRef.current, scrollRef.current], { opacity: 0 });
 
-  const handleMouseMove = (e) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-  };
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+
+      tl.from(lineRef.current, {
+        scaleX: 0,
+        transformOrigin: 'left center',
+        duration: 0.9,
+        delay: 0.2,
+        ease: 'power4.inOut',
+      })
+      .from('.hero-line .reveal-text', {
+        y: '110%',
+        stagger: 0.1,
+        duration: 1.4,
+      }, '-=0.5')
+      .to(subtitleRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.9')
+      .to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.5')
+      .to(buttonsRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.5')
+      .to(scrollRef.current, {
+        opacity: 0.4,
+        duration: 0.5,
+      }, '-=0.2');
+
+      // Floating word parallax
+      gsap.to('.hero-parallax', {
+        y: -18,
+        repeat: -1,
+        yoyo: true,
+        duration: 4,
+        ease: 'sine.inOut',
+      });
+
+      // Mouse parallax on "PG"
+      const onMouseMove = (e) => {
+        const xPos = (e.clientX / window.innerWidth - 0.5) * 55;
+        const yPos = (e.clientY / window.innerHeight - 0.5) * 55;
+        gsap.to('.mouse-parallax', { x: xPos, y: yPos, duration: 1.8, ease: 'power2.out' });
+      };
+      window.addEventListener('mousemove', onMouseMove);
+      return () => window.removeEventListener('mousemove', onMouseMove);
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       id="inicio"
-      onMouseMove={handleMouseMove}
+      ref={containerRef}
       style={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
         position: 'relative',
-        paddingTop: '100px',
-        overflow: 'hidden'
+        overflow: 'hidden',
       }}
     >
-      {/* Dynamic Nebula Glows */}
-      <motion.div style={{
-        position: 'absolute',
-        width: '600px',
-        height: '600px',
-        background: 'radial-gradient(circle, rgba(240, 19, 30, 0.15) 0%, transparent 70%)',
-        top: '10%',
-        left: '20%',
-        zIndex: -1,
-        filter: 'blur(80px)',
-        x: dx,
-        y: dy
-      }}></motion.div>
+      <div className="container">
+        <div style={{ maxWidth: '1000px' }}>
 
-      <motion.div style={{
-        position: 'absolute',
-        width: '500px',
-        height: '500px',
-        background: 'radial-gradient(circle, rgba(0, 51, 160, 0.2) 0%, transparent 70%)',
-        bottom: '10%',
-        right: '15%',
-        zIndex: -1,
-        filter: 'blur(100px)',
-        x: useTransform(dx, (v) => -v),
-        y: useTransform(dy, (v) => -v)
-      }}></motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-        style={{ zIndex: 1 }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(240, 19, 30, 0.1)',
-            padding: '0.5rem 1rem',
-            borderRadius: '50px',
-            border: '1px solid rgba(240, 19, 30, 0.2)',
-            color: 'var(--accent-color)',
-            fontSize: '0.8rem',
-            fontWeight: 700,
+          <div ref={subtitleRef} style={{
+            fontSize: '0.72rem',
+            fontWeight: 600,
+            letterSpacing: '0.32em',
+            color: 'var(--text-secondary)',
+            marginBottom: '2rem',
             textTransform: 'uppercase',
-            letterSpacing: '2px',
-            marginBottom: '1.5rem'
-          }}
-        >
-          <Sparkles size={14} /> sistemas feitos pra você
-        </motion.div>
+            transform: 'translateX(-20px)',
+          }}>
+            Desenvolvedor Full-Stack &amp; Estrategista Digital
+          </div>
 
-        <h1 className="hero-title" style={{
-          fontSize: 'clamp(3rem, 10vw, 6rem)',
-          lineHeight: 0.9,
-          marginBottom: '1rem',
-          color: '#fff',
-          fontWeight: 900,
-          perspective: '1000px'
-        }}>
-          PETER <span className="text-gradient" style={{ display: 'block' }}>DEV</span>
-        </h1>
+          <div ref={lineRef} style={{
+            width: '56px',
+            height: '2px',
+            backgroundColor: 'var(--accent-color)',
+            marginBottom: '2.5rem',
+          }} />
 
-        <span style={{
-          color: 'var(--primary-color)',
-          fontWeight: 600,
-          letterSpacing: '3px',
-          fontSize: 'clamp(1rem, 3vw, 1.5rem)',
-          textTransform: 'uppercase',
-          marginBottom: '2.5rem',
-          display: 'block',
-          minHeight: '2.5rem',
-          textShadow: '0 0 20px rgba(240, 19, 30, 0.3)'
-        }}>
-          <Typewriter phrases={['Criação de Sites Profissionais', 'Design de Alta Conversão', 'Sistemas Web Sob Medida', 'Especialista em Francisco Beltrão']} />
-        </span>
+          <h1 style={{
+            fontSize: 'clamp(3.8rem, 10vw, 9.5rem)',
+            lineHeight: 0.88,
+            marginBottom: '3rem',
+            color: 'var(--text-primary)',
+            fontWeight: 700,
+            letterSpacing: '-0.06em',
+          }}>
+            <div className="hero-line" style={{ overflow: 'hidden' }}>
+              <span className="reveal-text" style={{ display: 'inline-block' }}>CRIANDO</span>
+            </div>
+            <div className="hero-line" style={{ overflow: 'hidden' }}>
+              <span className="reveal-text hero-parallax" style={{ display: 'inline-block', color: 'var(--gray-medium)' }}>
+                EXPERIÊNCIAS
+              </span>
+            </div>
+            <div className="hero-line" style={{ overflow: 'hidden' }}>
+              <span className="reveal-text" style={{ display: 'inline-block', color: 'var(--text-secondary)' }}>
+                DIGITAIS.
+              </span>
+            </div>
+          </h1>
 
-        <p style={{
-          maxWidth: '650px',
-          color: 'var(--text-secondary)',
-          fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-          marginBottom: '3rem',
-          lineHeight: 1.6,
-          margin: '0 auto 3rem'
-        }}>
-          Estrategista digital focado em construir soluções tecnológicas que escalam negócios e criam experiências imersivas.
-        </p>
+          <p ref={textRef} style={{
+            maxWidth: '520px',
+            color: 'var(--text-secondary)',
+            fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+            marginBottom: '3.5rem',
+            lineHeight: 1.75,
+            transform: 'translateY(16px)',
+          }}>
+            Transformando ideias em interfaces impactantes e sistemas robustos. Especialista em construir o futuro da sua presença online.
+          </p>
 
-        <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <motion.a
-            href="#servicos"
-            whileHover={{ scale: 1.05, boxShadow: '0 0 30px var(--primary-glow)' }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: '1rem 2.5rem',
-              background: 'linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)',
-              color: '#fff',
-              borderRadius: '12px',
-              fontWeight: 700,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.8rem',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              boxShadow: '0 10px 30px -10px var(--primary-color)'
-            }}
-          >
-            Ver Soluções <ArrowRight size={20} />
-          </motion.a>
+          <div ref={buttonsRef} className="hero-btns" style={{
+            display: 'flex',
+            gap: '1.5rem',
+            flexWrap: 'wrap',
+            transform: 'translateY(16px)',
+          }}>
+            <a href="#portfolio" className="btn-primary">
+              Ver Projetos <ArrowRight size={16} />
+            </a>
+            <a href="#contato" className="btn-outline">
+              Vamos Conversar
+            </a>
+          </div>
 
-          <motion.a
-            href="#contato"
-            whileHover={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.3)' }}
-            style={{
-              padding: '1rem 2.5rem',
-              background: 'rgba(15, 15, 20, 0.5)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              color: '#fff',
-              borderRadius: '12px',
-              fontWeight: 700,
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            Falar com Especialista
-          </motion.a>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        animate={{ y: [0, 15, 0] }}
-        transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          bottom: '40px',
-          color: 'var(--primary-color)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.5rem',
-          opacity: 0.6
-        }}
-      >
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase' }}>Descida Interna</span>
-        <ChevronDown size={24} />
-      </motion.div>
+      {/* Background PG text */}
+      <div className="mouse-parallax" style={{
+        position: 'absolute',
+        top: '10%',
+        right: '3%',
+        fontSize: 'clamp(14rem, 30vw, 24rem)',
+        fontWeight: 900,
+        color: 'var(--text-primary)',
+        zIndex: -1,
+        opacity: 0.025,
+        userSelect: 'none',
+        pointerEvents: 'none',
+        fontFamily: 'var(--font-heading)',
+        letterSpacing: '-0.1em',
+        lineHeight: 1,
+      }}>
+        PG
+      </div>
 
-      {/* Subtle Spatial Accents */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{ repeat: Infinity, duration: 5 }}
-        style={{
-          position: 'absolute',
-          top: '30%',
-          right: '10%',
-          width: '4px',
-          height: '4px',
-          background: '#fff',
-          borderRadius: '50%',
-          boxShadow: '0 0 10px #fff'
-        }}
-      />
+      {/* Scroll indicator */}
+      <div ref={scrollRef} style={{
+        position: 'absolute',
+        bottom: '36px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.5rem',
+        color: 'var(--gray-medium)',
+      }}>
+        <span style={{ fontSize: '0.62rem', fontWeight: 600, letterSpacing: '0.22em' }}>SCROLL</span>
+        <ChevronDown size={14} />
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 768px) {
+          #inicio .container > div { text-align: center; }
+          #inicio .hero-btns { justify-content: center; }
+          #inicio .hero-line { text-align: center; }
+        }
+      ` }} />
     </section>
   );
 };
