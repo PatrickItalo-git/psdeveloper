@@ -109,7 +109,8 @@ const Services = () => {
         width: '100%',
       }}>
         {services.map((service, idx) => (
-          <div
+          <a
+            href="#portfolio"
             key={idx}
             className="service-card"
             style={{
@@ -120,9 +121,11 @@ const Services = () => {
               minHeight: '380px',
               position: 'relative',
               overflow: 'hidden',
-              cursor: 'none',
+              textDecoration: 'none',
+              color: 'inherit',
             }}
           >
+
             {/* Number */}
             <span className="service-num" style={{
               position: 'absolute',
@@ -150,11 +153,11 @@ const Services = () => {
 
             <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
-                Saiba Mais
+                Ver Exemplos
               </span>
               <ArrowUpRight size={20} className="arrow-icon" style={{ color: 'var(--text-secondary)' }} />
             </div>
-          </div>
+          </a>
         ))}
       </div>
 

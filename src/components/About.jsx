@@ -107,7 +107,7 @@ const About = () => {
       id="sobre"
       ref={containerRef}
       className="container"
-      style={{ borderTop: '1px solid var(--border-color)', padding: '120px 0' }}
+      style={{ borderTop: '1px solid var(--border-color)', paddingBlock: '120px' }}
     >
       {/* ── Section Header ── */}
       <div style={{ marginBottom: '5rem' }}>
@@ -127,7 +127,7 @@ const About = () => {
         </span>
 
         <div className="about-heading-wrap" style={{ overflow: 'hidden' }}>
-          <h2 style={{ fontSize: 'clamp(2.8rem, 6.5vw, 6rem)', letterSpacing: '-0.05em', lineHeight: 0.9 }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 8vw, 6rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
             <span className="about-heading-line" style={{ display: 'block' }}>ENGENHARIA DE</span>
             <span className="about-heading-line" style={{ display: 'block', color: 'var(--text-secondary)' }}>
               SOLUÇÕES DIGITAIS.
@@ -159,12 +159,12 @@ const About = () => {
             alt="Patrick Gattini"
             className="profile-parallax"
             style={{
-              width: '115%',
-              height: '115%',
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               position: 'absolute',
-              top: '-7.5%',
-              left: '-7.5%',
+              top: '0',
+              left: '0',
               display: 'block',
             }}
           />
@@ -295,22 +295,33 @@ const About = () => {
         @media (max-width: 860px) {
           .about-main-grid, .credentials-section {
             grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
+            gap: 3.5rem !important;
           }
           .about-img-outer {
-            aspect-ratio: 4/3 !important;
-            max-height: 320px;
+            aspect-ratio: 1 !important;
+            max-height: 400px;
+            width: 100%;
+          }
+          .about-bio {
+            text-align: center;
+          }
+          .about-quote {
+            text-align: center;
+            border-left: none;
+            border-top: 1px solid var(--border-color);
+            padding: 1.5rem 0 0;
           }
           .about-stats-row {
+            justify-content: center;
             gap: 2rem !important;
           }
         }
         @media (max-width: 480px) {
-          .about-stats-row {
-            flex-wrap: wrap;
-            gap: 1.5rem !important;
-          }
+          .about-main-grid { gap: 2.5rem !important; }
+          .timeline-item { padding-left: 1.25rem !important; }
+          .about-tag { font-size: 0.6rem; letter-spacing: 0.2em; }
         }
+
       ` }} />
     </section>
   );

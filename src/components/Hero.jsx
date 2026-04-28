@@ -90,16 +90,16 @@ const Hero = () => {
         <div style={{ maxWidth: '1000px' }}>
 
           <div ref={subtitleRef} style={{
-            fontSize: '0.72rem',
+            fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
             fontWeight: 600,
             letterSpacing: '0.32em',
             color: 'var(--text-secondary)',
             marginBottom: '2rem',
             textTransform: 'uppercase',
-            transform: 'translateX(-20px)',
           }}>
             Desenvolvedor Full-Stack &amp; Estrategista Digital
           </div>
+
 
           <div ref={lineRef} style={{
             width: '56px',
@@ -109,8 +109,8 @@ const Hero = () => {
           }} />
 
           <h1 style={{
-            fontSize: 'clamp(3.8rem, 10vw, 9.5rem)',
-            lineHeight: 0.88,
+            fontSize: 'clamp(1.6rem, 10vw, 9.5rem)',
+            lineHeight: 1,
             marginBottom: '3rem',
             color: 'var(--text-primary)',
             fontWeight: 700,
@@ -130,6 +130,7 @@ const Hero = () => {
               </span>
             </div>
           </h1>
+
 
           <p ref={textRef} style={{
             maxWidth: '520px',
@@ -163,8 +164,8 @@ const Hero = () => {
       <div className="mouse-parallax" style={{
         position: 'absolute',
         top: '10%',
-        right: '3%',
-        fontSize: 'clamp(14rem, 30vw, 24rem)',
+        right: '0',
+        fontSize: 'clamp(8rem, 25vw, 24rem)',
         fontWeight: 900,
         color: 'var(--text-primary)',
         zIndex: -1,
@@ -174,6 +175,8 @@ const Hero = () => {
         fontFamily: 'var(--font-heading)',
         letterSpacing: '-0.1em',
         lineHeight: 1,
+        overflow: 'hidden',
+        maxWidth: '100vw',
       }}>
         PG
       </div>
@@ -196,10 +199,15 @@ const Hero = () => {
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 768px) {
-          #inicio .container > div { text-align: center; }
-          #inicio .hero-btns { justify-content: center; }
+          #inicio .container > div { text-align: center; margin: 0 auto; }
+          #inicio .hero-btns { justify-content: center; flex-direction: column; width: 100%; }
+          #inicio .hero-btns a { width: 100%; }
           #inicio .hero-line { text-align: center; }
+          #inicio p { margin-left: auto; margin-right: auto; max-width: 100%; }
+          #inicio div[ref="lineRef"] { margin: 0 auto 2.5rem !important; }
         }
+
+
       ` }} />
     </section>
   );

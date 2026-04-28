@@ -18,10 +18,14 @@ const CustomCursor = () => {
     const grow = () => gsap.to(ring, { scale: 2.2, opacity: 0.5, duration: 0.3, ease: 'power2.out' });
     const shrink = () => gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3, ease: 'power2.out' });
 
+    // Hide default cursor
+    document.documentElement.style.cursor = 'none';
+
     window.addEventListener('mousemove', move);
 
     const addListeners = () => {
-      document.querySelectorAll('a, button, .service-card, .project-item, .glass-card').forEach(el => {
+      document.querySelectorAll('a, button, .service-card, .project-item, .glass-card, .nav-link').forEach(el => {
+        el.style.cursor = 'none';
         el.addEventListener('mouseenter', grow);
         el.addEventListener('mouseleave', shrink);
       });
@@ -34,8 +38,14 @@ const CustomCursor = () => {
     return () => {
       window.removeEventListener('mousemove', move);
       observer.disconnect();
+      document.documentElement.style.cursor = '';
     };
   }, []);
+
+  // Disable on mobile/touch
+  if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
+    return null;
+  }
 
   return (
     <>
@@ -44,5 +54,6 @@ const CustomCursor = () => {
     </>
   );
 };
+
 
 export default CustomCursor;

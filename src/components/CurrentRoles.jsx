@@ -79,7 +79,7 @@ const CurrentRoles = () => {
   }, []);
 
   return (
-    <section id="atuacao" className="container" ref={containerRef} style={{ padding: '120px 0', borderTop: '1px solid var(--border-color)' }}>
+    <section id="atuacao" className="container" ref={containerRef} style={{ paddingBlock: '120px', borderTop: '1px solid var(--border-color)' }}>
       <div className="roles-header" style={{ textAlign: 'left', marginBottom: '5rem' }}>
         <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1 }}>
@@ -108,9 +108,9 @@ const CurrentRoles = () => {
               gap: '2rem',
               padding: '2.5rem',
               borderRadius: '2px',
-              cursor: 'none',
             }}
           >
+
             <div className="role-img-wrap" style={{ overflow: 'hidden', height: '280px', borderRadius: '1px', clipPath: 'inset(0 0 0% 0)' }}>
               <img
                 src={image}

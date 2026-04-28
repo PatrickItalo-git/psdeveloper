@@ -12,11 +12,11 @@ import imgSpace from '../images/proj_space.png';
 gsap.registerPlugin(ScrollTrigger);
 
 const projectsData = [
-  { title: 'Clínica SmileBright', category: 'Saúde & Bem-estar', description: 'Experiência digital premium para cuidados odontológicos de elite.', image: imgOdonto, link: '#' },
-  { title: 'Apex Personal', category: 'Fitness & Performance', description: 'Plataforma de alta performance para atletas e treinamento personalizado.', image: imgPersonal, link: '#' },
-  { title: 'Lumina Media', category: 'Marketing & Estratégia', description: 'Estratégia digital moderna para marcas globais com foco em conversão.', image: imgMarketing, link: '#' },
-  { title: 'SyncTask SaaS', category: 'Produtividade', description: 'Plataforma de gestão de fluxo de trabalho de próxima geração.', image: imgSaas, link: '#' },
-  { title: 'Starlink Explorer', category: 'Educação & Ciência', description: 'Interface imersiva para visualização de dados espaciais em tempo real.', image: imgSpace, link: '#' },
+  { title: 'Clínica SmileBright', category: 'Saúde & Bem-estar', description: 'Experiência digital premium para cuidados odontológicos de elite.', image: imgOdonto, link: '/PROJETOS/clinica-odontologica/index.html' },
+  { title: 'Apex Personal', category: 'Fitness & Performance', description: 'Plataforma de alta performance para atletas e treinamento personalizado.', image: imgPersonal, link: '/PROJETOS/personal-trainer/index.html' },
+  { title: 'Lumina Media', category: 'Marketing & Estratégia', description: 'Estratégia digital moderna para marcas globais com foco em conversão.', image: imgMarketing, link: '/PROJETOS/agencia-marketing/index.html' },
+  { title: 'SyncTask SaaS', category: 'Produtividade', description: 'Plataforma de gestão de fluxo de trabalho de próxima geração.', image: imgSaas, link: '/PROJETOS/plataforma-saas/index.html' },
+  { title: 'Starlink Explorer', category: 'Educação & Ciência', description: 'Interface imersiva para visualização de dados espaciais em tempo real.', image: imgSpace, link: '/PROJETOS/e-commerce-espacial/index.html' },
 ];
 
 const Portfolio = () => {
@@ -78,7 +78,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section id="portfolio" ref={containerRef} className="container" style={{ padding: '140px 0' }}>
+    <section id="portfolio" ref={containerRef} className="container" style={{ paddingBlock: '140px' }}>
       <div ref={headerRef} style={{ marginBottom: '7rem' }}>
         <div className="portfolio-header-line" style={{ width: '40px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '2.5rem' }} />
 
@@ -96,10 +96,15 @@ const Portfolio = () => {
       <div className="portfolio-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: 'clamp(3rem, 7vw, 6rem)',
+        gap: 'clamp(2rem, 5vw, 6rem)',
       }}>
         {projectsData.map((project, idx) => (
-          <div key={idx} className="project-item" style={{ cursor: 'none' }}>
+          <a
+            key={idx}
+            href={project.link}
+            className="project-item"
+            style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+          >
             <div className="project-image-wrapper" style={{
               aspectRatio: '16/10',
               overflow: 'hidden',
@@ -154,9 +159,10 @@ const Portfolio = () => {
                 {project.description}
               </p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
+
 
       <style dangerouslySetInnerHTML={{ __html: `
         .project-item:hover .project-img { transform: scale(1.06); }

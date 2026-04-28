@@ -208,12 +208,13 @@ const Navbar = () => {
               onClick={handleLinkClick}
               className="mobile-nav-link"
               style={{
-                fontSize: 'clamp(2.2rem, 9vw, 3.5rem)',
+                fontSize: 'clamp(1.8rem, 8vw, 3rem)',
                 fontWeight: 700,
                 letterSpacing: '-0.04em',
                 color: isActive(link.href) ? 'var(--accent-color)' : 'var(--text-primary)',
                 fontFamily: 'var(--font-heading)',
-                lineHeight: 1.15,
+                lineHeight: 1.1,
+
                 borderBottom: '1px solid var(--border-color)',
                 paddingBottom: '0.75rem',
                 paddingTop: i === 0 ? 0 : '0.75rem',
