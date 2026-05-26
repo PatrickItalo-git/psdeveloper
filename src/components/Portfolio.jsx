@@ -78,8 +78,8 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section id="portfolio" ref={containerRef} className="container" style={{ paddingBlock: '140px' }}>
-      <div ref={headerRef} style={{ marginBottom: '7rem' }}>
+    <section id="portfolio" ref={containerRef} className="container" style={{ paddingBlock: 'clamp(60px, 12vw, 140px)' }}>
+      <div ref={headerRef} style={{ marginBottom: 'clamp(3rem, 10vw, 7rem)' }}>
         <div className="portfolio-header-line" style={{ width: '40px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '2.5rem' }} />
 
         <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
@@ -155,7 +155,7 @@ const Portfolio = () => {
               <h3 style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
                 {project.title}
               </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '440px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '100%' }}>
                 {project.description}
               </p>
             </div>
@@ -170,8 +170,13 @@ const Portfolio = () => {
         .project-item:hover .project-btn { transform: translateY(0) scale(1); }
         .project-img { transition: transform 1.1s cubic-bezier(0.16,1,0.3,1); }
 
+        .project-meta p { max-width: 440px; }
+
         @media (max-width: 768px) {
-          .portfolio-grid { grid-template-columns: 1fr !important; }
+          .portfolio-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .project-meta p { max-width: 100% !important; }
+          .project-btn { width: 48px !important; height: 48px !important; }
+          .project-image-wrapper { border-radius: 6px !important; }
         }
       ` }} />
     </section>
