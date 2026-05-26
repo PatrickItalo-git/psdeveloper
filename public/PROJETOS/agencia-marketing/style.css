@@ -26,8 +26,8 @@ body {
     position: fixed;
     top: -10%;
     left: -10%;
-    width: 600px;
-    height: 600px;
+    width: clamp(220px, 40vw, 600px);
+    height: clamp(220px, 40vw, 600px);
     background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
     filter: blur(100px);
     opacity: 0.3;
@@ -39,8 +39,8 @@ body {
     position: fixed;
     bottom: -10%;
     right: -10%;
-    width: 500px;
-    height: 500px;
+    width: clamp(180px, 35vw, 500px);
+    height: clamp(180px, 35vw, 500px);
     background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
     filter: blur(100px);
     opacity: 0.3;
@@ -55,7 +55,7 @@ body {
 
 /* Navbar */
 .navbar {
-    padding: 30px 10%;
+    padding: clamp(16px, 3vw, 30px) clamp(6%, 8vw, 10%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,21 +99,21 @@ body {
 
 /* Hero */
 .hero {
-    padding: 50px 10%;
+    padding: clamp(30px, 8vw, 50px) clamp(6%, 8vw, 10%);
     display: flex;
     align-items: center;
-    gap: 80px;
-    min-height: 70vh;
+    gap: clamp(20px, 6vw, 80px);
+    min-height: 55vh;
 }
 
 .hero-left { flex: 1.2; }
-.hero-right { flex: 0.8; }
+.hero-right { flex: 0.9; }
 
 .hero-left h1 {
-    font-size: 5rem;
+    font-size: clamp(2.2rem, 6vw, 5rem);
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 30px;
+    margin-bottom: 1.25rem;
 }
 
 .hero-left h1 span {
@@ -124,17 +124,17 @@ body {
 }
 
 .hero-left p {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.6;
     opacity: 0.6;
-    margin-bottom: 40px;
-    max-width: 600px;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
 }
 
 .cta-group {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: clamp(12px, 4vw, 40px);
 }
 
 .primary-cta {
@@ -151,9 +151,9 @@ body {
 .hero-right .glass-container {
     background: var(--glass);
     border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 20px;
-    backdrop-filter: blur(40px);
+    border-radius: 24px;
+    padding: 16px;
+    backdrop-filter: blur(20px);
     transform: perspective(1000px) rotateY(-15deg);
     transition: 0.5s;
 }
@@ -164,7 +164,10 @@ body {
 
 .hero-right img {
     width: 100%;
-    border-radius: 30px;
+    max-width: 420px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
 /* Services section */
@@ -205,9 +208,18 @@ body {
 
 @media (max-width: 1024px) {
     .hero { flex-direction: column; text-align: center; }
-    .hero-left h1 { font-size: 3.5rem; }
+    .hero-left h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
     .hero-left p { margin-inline: auto; }
     .cta-group { justify-content: center; }
     .services { flex-direction: column; }
-    .navbar { padding: 30px 5%; }
+    .navbar { padding: clamp(12px, 3vw, 30px) 5%; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 20px; }
+    .hero-left h1 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+    .hero { padding: 20px 6%; }
+    .blob-bg, .blob-bg-2 { display: none; }
+    .primary-cta { padding: 12px 20px; }
+    .talk-btn { padding: 8px 14px; border-radius: 10px; }
 }

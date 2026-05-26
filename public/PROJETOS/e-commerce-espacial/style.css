@@ -42,7 +42,7 @@ body {
 
 /* Navbar */
 .navbar {
-    padding: 20px 10%;
+    padding: clamp(10px, 3vw, 20px) clamp(6%, 8vw, 10%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +68,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -85,14 +86,14 @@ body {
 
 /* Hero */
 .hero {
-    padding: 150px 10% 100px;
+    padding: clamp(60px, 12vw, 150px) clamp(6%, 8vw, 10%) clamp(40px, 8vw, 100px);
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: clamp(20px, 6vw, 60px);
 }
 
 .hero-left { flex: 1.2; }
-.hero-right { flex: 0.8; }
+.hero-right { flex: 0.9; }
 
 .badge {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -106,7 +107,7 @@ body {
 }
 
 .hero-left h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2rem, 7vw, 4.5rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 30px;
@@ -160,10 +161,10 @@ body {
 .hologram {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: clamp(260px, 40vh, 500px);
     background: rgba(0, 242, 255, 0.05);
     border: 1px solid rgba(0, 242, 255, 0.2);
-    border-radius: 30px;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -172,6 +173,7 @@ body {
 
 .hologram img {
     width: 80%;
+    max-width: 380px;
     filter: drop-shadow(0 0 20px var(--primary));
     animation: float 4s ease-in-out infinite;
 }
@@ -224,8 +226,17 @@ body {
 
 @media (max-width: 1024px) {
     .hero { flex-direction: column; text-align: center; }
-    .hero-left h1 { font-size: 3rem; }
+    .hero-left h1 { font-size: clamp(1.8rem, 8vw, 3rem); }
     .price-hero { justify-content: center; }
-    .navbar { padding: 20px 5%; justify-content: center; flex-direction: column; gap: 20px; }
-    .search-bar { width: 100%; }
+    .navbar { padding: clamp(8px, 3vw, 20px) 5%; justify-content: center; flex-direction: column; gap: 20px; }
+    .search-bar { width: 100%; max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 18px; }
+    .hero { padding: 40px 6% 30px; }
+    .hero-left h1 { font-size: clamp(1.4rem, 9vw, 2.2rem); }
+    .buy-btn { padding: 10px 18px; }
+    .hologram { height: 220px; }
+    .search-bar { max-width: 100%; }
 }
