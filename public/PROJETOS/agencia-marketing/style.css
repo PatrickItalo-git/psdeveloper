@@ -21,6 +21,10 @@ body {
     min-height: 100vh;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 /* Background Blobs */
 .blob-bg {
     position: fixed;
@@ -59,6 +63,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .logo {
@@ -215,6 +228,13 @@ body {
     .navbar { padding: clamp(12px, 3vw, 30px) 5%; }
 }
 
+@media (max-width: 768px) {
+    .nav-links { gap: 16px; }
+    .hero { gap: 30px; flex-wrap: wrap; }
+    .hero-right .glass-container { max-width: 100%; }
+    .hero-left, .hero-right { width: 100%; }
+}
+
 @media (max-width: 480px) {
     .logo { font-size: 20px; }
     .hero-left h1 { font-size: clamp(1.6rem, 8vw, 2.2rem); }
@@ -222,4 +242,5 @@ body {
     .blob-bg, .blob-bg-2 { display: none; }
     .primary-cta { padding: 12px 20px; }
     .talk-btn { padding: 8px 14px; border-radius: 10px; }
+    .nav-links { justify-content: center; }
 }

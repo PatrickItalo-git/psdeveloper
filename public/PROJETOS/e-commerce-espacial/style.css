@@ -18,6 +18,11 @@ body {
     color: var(--text);
     overflow-x: hidden;
     min-height: 100vh;
+    padding-top: 0;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 /* Dynamic Stars Background */
@@ -51,6 +56,7 @@ body {
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0; width: 100%; z-index: 100;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -232,11 +238,17 @@ body {
     .search-bar { width: 100%; max-width: 100%; }
 }
 
+@media (max-width: 768px) {
+    .hero { padding-top: 220px; }
+    .navbar { align-items: stretch; }
+    .search-bar { width: 100%; max-width: 100%; }
+}
+
 @media (max-width: 480px) {
     .logo { font-size: 18px; }
-    .hero { padding: 40px 6% 30px; }
+    .hero { padding: 240px 6% 30px; }
     .hero-left h1 { font-size: clamp(1.4rem, 9vw, 2.2rem); }
     .buy-btn { padding: 10px 18px; }
     .hologram { height: 220px; }
-    .search-bar { max-width: 100%; }
+    .search-bar { width: 100%; max-width: 100%; }
 }
