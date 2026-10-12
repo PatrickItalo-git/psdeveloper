@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom';
+import PageHero from '../components/PageHero.jsx';
 import { projects } from '../data/site.js';
 
 const ClientsPage = () => (
   <main>
-    <header className="page-head">
-      <h1 className="page-title reveal">Clientes</h1>
-      <p className="muted reveal" style={{ textAlign: 'center', marginTop: '1.5rem', padding: '0 1.25rem' }}>
-        Empresas que confiaram no meu trabalho para construir sua presença digital.
-      </p>
-    </header>
+    <PageHero title="Clientes" subtitle="Empresas que confiaram no meu trabalho para construir sua presença digital." />
 
     <section className="container" style={{ paddingBottom: '120px' }}>
       <div className="grid-2">

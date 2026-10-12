@@ -1,10 +1,9 @@
 import { services } from '../data/site.js';
+import PageHero from '../components/PageHero.jsx';
 
 const ServicesPage = () => (
   <main>
-    <header className="page-head">
-      <h1 className="page-title reveal">Serviços</h1>
-    </header>
+    <PageHero title="Serviços" subtitle="Da primeira conversa ao sistema em produção." />
 
     <section className="container" style={{ paddingBottom: '120px' }}>
       <div className="grid-3">

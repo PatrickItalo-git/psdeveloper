@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
+import PageHero from '../components/PageHero.jsx';
 import { projects } from '../data/site.js';
 
 const ProjectsPage = () => (
   <main>
-    <header className="page-head">
-      <h1 className="page-title reveal">Projetos</h1>
-    </header>
+    <PageHero title="Projetos" subtitle="Sites reais, no ar, feitos para clientes reais." />
 
     <section className="container" style={{ paddingBottom: '120px' }}>
       <div className="grid-2 projects-grid">

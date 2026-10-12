@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PageHero from '../components/PageHero.jsx';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { IconInstagram } from '../components/Icons.jsx';
 import { contact, whatsappLink } from '../data/site.js';
@@ -24,9 +25,7 @@ const ContactPage = () => {
 
   return (
     <main>
-      <header className="page-head">
-        <h1 className="page-title reveal">Contato</h1>
-      </header>
+      <PageHero title="Contato" subtitle="Vamos tirar a sua ideia do papel." />
 
       <section className="container contact-grid" style={{ paddingBottom: '120px' }}>
         <div className="reveal">

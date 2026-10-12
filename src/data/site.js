@@ -68,7 +68,7 @@ export const services = [
 ];
 
 export const roles = [
-  { name: 'UNIPAR', role: 'Professor de ADS', desc: 'Leciono Desenvolvimento Web e DevOps, formando profissionais com as melhores práticas do mercado.', logo: uniparLogo },
+  { name: 'UNIPAR', role: 'Professor de ADS e Engenharia de Software', desc: 'Leciono nos cursos de Análise e Desenvolvimento de Sistemas e Engenharia de Software, com foco em Desenvolvimento Web e DevOps, formando profissionais com as melhores práticas do mercado.', logo: uniparLogo },
   { name: 'Grupo Ítalo', role: 'Analista de Desenvolvimento', desc: 'Ferramentas de performance, otimização PostgreSQL e arquitetura de APIs críticas para o grupo.', logo: italoLogo },
 ];
 
@@ -78,7 +78,7 @@ export const education = [
 ];
 
 export const experience = [
-  { role: 'Professor Universitário', company: 'UNIPAR', period: '2026 — atual' },
+  { role: 'Professor Universitário', company: 'UNIPAR — ADS e Engenharia de Software', period: '2026 — atual' },
   { role: 'Analista de Desenvolvimento', company: 'Grupo Ítalo', period: '2025 — atual' },
   { role: 'Desenvolvedor Full-Stack', company: 'Grifo Sistemas', period: '2024 — 2025' },
 ];

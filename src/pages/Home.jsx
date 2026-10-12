@@ -1,16 +1,7 @@
 import { Link } from 'react-router-dom';
 import profileImg from '../images/profile.jpg';
 import { projects, roles } from '../data/site.js';
-
-// Decorative flowing lines behind the quote band.
-const Waves = ({ className = '' }) => (
-  <svg className={`waves ${className}`} viewBox="0 0 1440 720" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 430 C 240 300, 420 640, 720 520 S 1150 180, 1440 360" />
-    <path d="M0 500 C 300 380, 480 700, 820 560 S 1200 260, 1440 470" />
-    <path d="M-40 560 C 260 470, 520 760, 900 620 S 1260 300, 1480 560" />
-    <path d="M560 720 C 720 520, 820 300, 1000 240 S 1320 420, 1440 520" />
-  </svg>
-);
+import Waves from '../components/Waves.jsx';
 
 const Home = () => (
   <main>
@@ -92,18 +83,12 @@ const Home = () => (
       }
       .home-hero__waves { width: 120% !important; left: -10% !important; animation: waveDrift 22s ease-in-out infinite alternate; }
       .home-hero__waves path { stroke: rgba(122, 166, 255, 0.45); }
-      @keyframes waveDrift {
-        from { transform: translate3d(-4%, 2%, 0) scaleY(1); }
-        to { transform: translate3d(4%, -3%, 0) scaleY(1.15); }
-      }
       .home-hero__band { position: relative; width: 100%; padding: clamp(2.5rem, 5vw, 4rem) 1.5rem; background: rgba(255, 255, 255, 0.06); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(8px); text-align: center; color: #fff; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6); }
       @media (prefers-reduced-motion: reduce) { .home-hero__waves { animation: none; } }
       .home-hero__title { font-weight: 200; font-size: clamp(2.2rem, 6vw, 5rem); letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.1; padding-left: 0.15em; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
       .home-hero__sub { margin-top: 1.5rem; font-weight: 300; font-size: clamp(0.8rem, 1.4vw, 1.2rem); letter-spacing: 0.35em; text-transform: uppercase; padding-left: 0.35em; color: var(--blue-light); }
 
       .home-quote { position: relative; overflow: hidden; padding: 100px 0; }
-      .waves { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-      .waves path { fill: none; stroke: rgba(122, 166, 255, 0.35); stroke-width: 1.2; }
       .home-quote__grid { position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
       .home-quote__text { text-align: right; }
       .home-quote__text blockquote { font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 2.2rem); line-height: 1.45; }

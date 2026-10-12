@@ -48,15 +48,20 @@ const Footer = () => (
     </div>
 
     <style>{`
-      .site-footer { background: #000; color: #fff; padding-top: 80px; }
+      .site-footer {
+        position: relative; overflow: hidden; color: #fff; padding-top: 80px;
+        background:
+          radial-gradient(ellipse 50% 70% at 90% 0%, rgba(47, 107, 255, 0.3), transparent 70%),
+          linear-gradient(180deg, #0b1a3d 0%, var(--night) 100%);
+      }
       .site-footer__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 60px; }
       .site-footer__logo { display: inline-block; padding: 0 2.25rem; }
       .site-footer__tagline { margin-top: 2.5rem; max-width: 260px; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-      .site-footer__title { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.75rem; }
+      .site-footer__title { color: var(--blue-light); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.75rem; }
       .site-footer__list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
       .site-footer__list a, .site-footer__place { display: flex; align-items: flex-start; gap: 0.9rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
       .site-footer__list a:hover { color: var(--blue-light); }
-      .site-footer__list svg { flex-shrink: 0; margin-top: 3px; color: #fff; }
+      .site-footer__list svg { flex-shrink: 0; margin-top: 3px; color: var(--blue-light); }
       .site-footer__place strong { color: #fff; font-weight: 500; }
       .site-footer__bottom { border-top: 1px solid var(--line-dark); padding: 1.5rem; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
       @media (max-width: 760px) {

@@ -6,13 +6,9 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Projetos', href: '/projetos' },
   { name: 'Clientes', href: '/clientes' },
-  { name: 'Sobre', href: '/sobre' },
   { name: 'Serviços', href: '/servicos' },
   { name: 'Contato', href: '/contato' },
 ];
-
-// Pages that open with a full-bleed image: the header starts transparent over it.
-const hasHero = (path) => path === '/' || path === '/sobre' || path.startsWith('/projeto/');
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -34,7 +30,8 @@ const Navbar = () => {
     document.body.style.overflow = open ? 'hidden' : '';
   }, [open]);
 
-  const transparent = hasHero(pathname) && !scrolled && !open;
+  // Every page opens with a dark blue banner, so the header starts transparent over it.
+  const transparent = !scrolled && !open;
 
   return (
     <header className={`site-header ${transparent ? 'is-transparent' : ''}`}>
@@ -70,15 +67,18 @@ const Navbar = () => {
           inset: 0 0 auto 0;
           height: var(--header-h);
           z-index: 100;
-          background: rgba(255, 255, 255, 0.97);
-          color: var(--ink);
-          box-shadow: 0 4px 24px rgba(11, 18, 32, 0.06);
+          background: rgba(7, 14, 32, 0.94);
+          backdrop-filter: blur(10px);
+          color: #fff;
+          box-shadow: 0 4px 24px rgba(5, 8, 15, 0.35);
+          border-bottom: 1px solid rgba(122, 166, 255, 0.15);
           transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
         }
         .site-header.is-transparent {
           background: transparent;
-          color: #fff;
+          backdrop-filter: none;
           box-shadow: none;
+          border-color: transparent;
         }
         .site-header__inner {
           height: 100%;
@@ -95,9 +95,8 @@ const Navbar = () => {
           padding: 4px 0;
           border-bottom: 1px solid transparent;
         }
-        .site-nav__link:hover { color: var(--blue); }
-        .site-header.is-transparent .site-nav__link:hover { color: var(--blue-light); }
-        .site-nav__link.active { border-color: currentColor; }
+        .site-nav__link:hover { color: var(--blue-light); }
+        .site-nav__link.active { border-color: var(--blue-light); }
         .site-header__toggle { display: none; width: 32px; height: 32px; flex-direction: column; justify-content: center; gap: 7px; }
         .site-header__toggle span { display: block; height: 1px; background: currentColor; transition: transform 0.3s ease; }
         .site-header__toggle[aria-expanded='true'] span:first-child { transform: translateY(4px) rotate(45deg); }
@@ -106,8 +105,8 @@ const Navbar = () => {
           position: fixed;
           top: var(--header-h);
           left: 0; right: 0; bottom: 0;
-          background: #fff;
-          color: var(--ink);
+          background: var(--night);
+          color: #fff;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -119,7 +118,7 @@ const Navbar = () => {
         }
         .mobile-menu.is-open { opacity: 1; visibility: visible; }
         .mobile-menu__link { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; padding-left: 0.35em; }
-        .mobile-menu__link.active { color: var(--blue); }
+        .mobile-menu__link.active { color: var(--blue-light); }
         @media (max-width: 1100px) { .site-nav { gap: 1.75rem; } }
         @media (max-width: 960px) {
           .site-nav { display: none; }

@@ -67,7 +67,7 @@ const ProjectPage = () => {
         .project-hero { position: relative; height: 70vh; min-height: 460px; overflow: hidden; background: var(--night); display: flex; align-items: center; justify-content: center; color: #fff; }
         /* Blurred screenshot: keeps the client's colors without repeating their on-page title */
         .project-hero__bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(18px) brightness(0.5) saturate(1.1); transform: scale(1.05); }
-        .project-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,8,15,0.45), rgba(5,8,15,0.25) 50%, rgba(5,8,15,0.55)); }
+        .project-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,8,15,0.55), rgba(26,63,158,0.35) 55%, rgba(5,8,15,0.7)); }
         .project-hero__back, .project-hero__title { z-index: 1; }
         .project-hero__back { position: absolute; top: calc(var(--header-h) + 24px); left: clamp(1.25rem, 3vw, 2.25rem); display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; z-index: 1; }
         .project-hero__back:hover { color: var(--blue-light); }
@@ -87,6 +87,7 @@ const ProjectPage = () => {
         .project-mobile img { width: 100%; border: 1px solid var(--line); box-shadow: var(--shadow); }
 
         .project-next { text-align: center; padding: 8rem 0 7rem; display: flex; flex-direction: column; gap: 1.25rem; align-items: center; }
+        .project-next a { color: var(--blue-dark); }
         .project-next a:hover { color: var(--blue); }
 
         @media (max-width: 760px) {
