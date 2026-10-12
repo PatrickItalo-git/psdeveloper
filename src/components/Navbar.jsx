@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
-import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Início', href: '/' },
@@ -20,18 +19,13 @@ const Navbar = () => {
 
   // Entry animation on mount
   useEffect(() => {
-    gsap.fromTo(
-      navRef.current,
-      { autoAlpha: 0, y: -12 },
-      { autoAlpha: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' }
-    );
-    // Keep mobile menu hidden initially
+    gsap.fromTo(navRef.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.8, delay: 0.1, ease: 'power2.out' });
     gsap.set(mobileMenuRef.current, { autoAlpha: 0 });
   }, []);
 
   // Scroll state
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -49,15 +43,8 @@ const Navbar = () => {
   const openMenu = () => {
     setIsMenuOpen(true);
     document.body.style.overflow = 'hidden';
-    gsap.to(mobileMenuRef.current, { autoAlpha: 1, duration: 0.35, ease: 'power3.out' });
-    gsap.from('.mobile-nav-link', {
-      y: 28,
-      opacity: 0,
-      stagger: 0.07,
-      duration: 0.55,
-      delay: 0.08,
-      ease: 'expo.out',
-    });
+    gsap.to(mobileMenuRef.current, { autoAlpha: 1, duration: 0.3, ease: 'power2.out' });
+    gsap.from('.mobile-nav-link', { y: 16, opacity: 0, stagger: 0.05, duration: 0.5, delay: 0.05, ease: 'power3.out' });
   };
 
   const closeMenu = () => {
@@ -90,11 +77,11 @@ const Navbar = () => {
           left: 0,
           width: '100%',
           zIndex: 1001,
-          padding: isScrolled ? '1rem 0' : '2rem 0',
-          transition: 'padding 0.5s cubic-bezier(0.16,1,0.3,1), background-color 0.5s ease, border-bottom 0.5s ease',
-          backgroundColor: isScrolled ? 'rgba(5,8,15,0.82)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(24px)' : 'none',
-          borderBottom: isScrolled ? '1px solid var(--border-color)' : 'none',
+          padding: isScrolled ? '1rem 0' : '1.75rem 0',
+          transition: 'padding 0.4s ease, background-color 0.4s ease, border-color 0.4s ease',
+          backgroundColor: isScrolled ? 'rgba(5,8,15,0.92)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+          borderBottom: `1px solid ${isScrolled ? 'var(--border-color)' : 'transparent'}`,
         }}
       >
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -102,98 +89,62 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={handleLinkClick}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 700, letterSpacing: '0.02em', color: 'var(--text-primary)', zIndex: 1002, position: 'relative' }}
+            style={{ fontFamily: 'var(--font-heading)', fontSize: '1.6rem', lineHeight: 1, color: 'var(--text-primary)', zIndex: 1002, position: 'relative' }}
           >
-            <span style={{
-              width: '34px',
-              height: '34px',
-              borderRadius: '8px',
-              background: 'var(--accent-gradient)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#fff',
-              fontSize: '0.85rem',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              boxShadow: '0 6px 18px var(--accent-glow)',
-            }}>PG</span>
-            <span>PATRICK <span style={{ color: 'var(--accent-light)' }}>GATTINI</span></span>
+            Patrick <em style={{ color: 'var(--accent-light)' }}>Gattini</em>
           </Link>
 
           {/* Desktop nav */}
-          <div style={{ display: 'flex', gap: '2.5rem' }} className="nav-menu">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2.25rem' }} className="nav-menu">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
-                style={{
-                  fontSize: '0.72rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.18em',
-                  color: isActive(link.href) ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  transition: 'color 0.3s ease',
-                  position: 'relative',
-                }}
                 className="nav-link"
+                style={{
+                  fontSize: '0.88rem',
+                  color: isActive(link.href) ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  borderBottom: `1px solid ${isActive(link.href) ? 'var(--accent-light)' : 'transparent'}`,
+                  paddingBottom: '2px',
+                }}
               >
                 {link.name}
-                {isActive(link.href) && (
-                  <span style={{
-                    position: 'absolute',
-                    bottom: '-6px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '16px',
-                    height: '2px',
-                    borderRadius: '2px',
-                    backgroundColor: 'var(--accent-color)',
-                    display: 'block',
-                  }} />
-                )}
               </Link>
             ))}
-          </div>
-
-          {/* Right side: WhatsApp (desktop) + Hamburger (mobile) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <a
               href="https://wa.me/5546999011726"
               target="_blank"
               rel="noreferrer"
-              className="btn-primary nav-whatsapp"
-              style={{ padding: '0.6rem 1.4rem', fontSize: '0.72rem' }}
+              className="btn-outline"
+              style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
             >
-              WhatsApp
+              Fale comigo
             </a>
-
-            <button
-              onClick={isMenuOpen ? closeMenu : openMenu}
-              className="hamburger-btn"
-              aria-label="Menu"
-              style={{
-                display: 'none',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '40px',
-                height: '40px',
-                color: 'var(--text-primary)',
-                zIndex: 1002,
-                position: 'relative',
-              }}
-            >
-              {isMenuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
-            </button>
           </div>
+
+          <button
+            onClick={isMenuOpen ? closeMenu : openMenu}
+            className="hamburger-btn"
+            aria-label="Menu"
+            style={{
+              display: 'none',
+              fontSize: '0.88rem',
+              color: 'var(--text-primary)',
+              zIndex: 1002,
+              position: 'relative',
+              borderBottom: '1px solid var(--border-strong)',
+              paddingBottom: '2px',
+            }}
+          >
+            {isMenuOpen ? 'Fechar' : 'Menu'}
+          </button>
         </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
           .nav-link:hover { color: var(--text-primary) !important; }
           @media (max-width: 900px) {
             .nav-menu { display: none !important; }
-            .nav-whatsapp { display: none !important; }
-            .hamburger-btn { display: flex !important; }
+            .hamburger-btn { display: inline-block !important; }
           }
         ` }} />
       </nav>
@@ -209,12 +160,12 @@ const Navbar = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: '0 2rem',
+          padding: '0 1.5rem',
           visibility: 'hidden',
           opacity: 0,
         }}
       >
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <nav style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid var(--border-color)' }}>
           {navLinks.map((link, i) => (
             <Link
               key={link.name}
@@ -222,48 +173,30 @@ const Navbar = () => {
               onClick={handleLinkClick}
               className="mobile-nav-link"
               style={{
-                fontSize: 'clamp(1.8rem, 8vw, 3rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.04em',
-                color: isActive(link.href) ? 'var(--accent-color)' : 'var(--text-primary)',
                 fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(2.2rem, 9vw, 3.2rem)',
                 lineHeight: 1.1,
-
+                color: isActive(link.href) ? 'var(--accent-light)' : 'var(--text-primary)',
                 borderBottom: '1px solid var(--border-color)',
-                paddingBottom: '0.75rem',
-                paddingTop: i === 0 ? 0 : '0.75rem',
+                padding: '0.9rem 0',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'baseline',
                 justifyContent: 'space-between',
-                transition: 'color 0.2s',
               }}
             >
               {link.name}
-              <span style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: 400, letterSpacing: '0.02em' }}>
+              <span style={{ fontFamily: 'var(--font-main)', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                 0{i + 1}
               </span>
             </Link>
           ))}
         </nav>
 
-        {/* Mobile contact */}
-        <div style={{ marginTop: '3rem', display: 'flex', gap: '1.5rem' }}>
-          <a
-            href="https://wa.me/5546999011726"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-primary"
-            style={{ fontSize: '0.78rem', padding: '0.9rem 2rem' }}
-            onClick={handleLinkClick}
-          >
+        <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <a href="https://wa.me/5546999011726" target="_blank" rel="noreferrer" className="btn-primary" onClick={handleLinkClick}>
             WhatsApp
           </a>
-          <a
-            href="mailto:patrick.souza.dev@gmail.com"
-            className="btn-outline"
-            style={{ fontSize: '0.78rem', padding: '0.9rem 2rem' }}
-            onClick={handleLinkClick}
-          >
+          <a href="mailto:patrick.souza.dev@gmail.com" className="btn-outline" onClick={handleLinkClick}>
             E-mail
           </a>
         </div>

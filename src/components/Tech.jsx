@@ -1,185 +1,70 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const technologies = [
-  'HTML', 'CSS', 'JavaScript', 'React JS', 'React Native', 
-  'Ruby', 'Java', 'Node.js', 'Firebase', 'GraphQL',
-  'Git', 'GitHub', 'SQL', 'NoSQL', 'DevOps', 'Ubuntu', 'PostgreSQL'
+gsap.registerPlugin(ScrollTrigger);
+
+const stack = [
+  { group: 'Front-end', items: ['HTML', 'CSS', 'JavaScript', 'React', 'React Native', 'GSAP'] },
+  { group: 'Back-end', items: ['Node.js', 'Ruby on Rails', 'Java', 'GraphQL', 'Firebase'] },
+  { group: 'Dados', items: ['PostgreSQL', 'SQL', 'NoSQL'] },
+  { group: 'Infra & Fluxo', items: ['Git', 'GitHub', 'DevOps', 'Ubuntu'] },
 ];
 
 const Tech = () => {
-  const duplicatedTechs = [...technologies, ...technologies, ...technologies];
-  const animRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Live GSAP Showcase Animation
-      gsap.to('.gsap-box', {
-        scale: 0.15,
-        rotation: 180,
-        borderRadius: '50%',
-        opacity: 0.3,
-        yoyo: true,
-        repeat: -1,
-        ease: 'sine.inOut',
-        duration: 1.2,
-        stagger: {
-          amount: 1.8,
-          grid: [5, 5],
-          from: 'center'
-        }
+      gsap.from('.tech .section-head > *', {
+        scrollTrigger: { trigger: '.tech .section-head', start: 'top 85%', once: true },
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.9,
+        ease: 'power3.out',
       });
-    }, animRef);
+
+      gsap.from('.stack-col', {
+        scrollTrigger: { trigger: '.stack-grid', start: 'top 85%', once: true },
+        y: 20,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="tech" style={{ paddingBlock: '120px', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
-      <div className="container">
-        
-        {/* GSAP Feature Section */}
-        <div className="gsap-feature" style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'clamp(3rem, 6vw, 6rem)',
-          alignItems: 'center',
-          marginBottom: '6rem'
-        }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-color)', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', fontSize: '0.75rem' }}>
-              <Sparkles size={16} />
-              Motion Design & Interatividade
-            </div>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.04em', color: 'var(--text-primary)' }}>
-              Experiências visuais de <span className="text-accent">alto nível</span> com GSAP.
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, maxWidth: '500px' }}>
-              Utilizo o <strong>GSAP (GreenSock Animation Platform)</strong>, amplamente reconhecida como a melhor e mais robusta ferramenta do mercado para criação de animações web e layouts avançados.
-            </p>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, maxWidth: '500px' }}>
-              Isso me permite transformar interfaces estáticas em experiências imersivas, garantindo transições perfeitamente fluidas e alta performance em qualquer dispositivo.
-            </p>
-          </div>
-
-          <div ref={animRef} style={{ 
-            width: '100%', 
-            aspectRatio: '4/3', 
-            borderRadius: '16px',
-            overflow: 'hidden',
-            border: '1px solid var(--border-color)',
-            background: 'radial-gradient(circle at center, rgba(47,107,255,0.14) 0%, var(--gray-dark) 70%)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '2.5rem',
-            padding: '2rem'
-          }}>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(5, 1fr)', 
-              gap: 'clamp(0.5rem, 2vw, 1.25rem)' 
-            }}>
-              {Array.from({ length: 25 }).map((_, i) => (
-                <div 
-                  key={i} 
-                  className="gsap-box" 
-                  style={{ 
-                    width: 'clamp(16px, 4vw, 24px)', 
-                    height: 'clamp(16px, 4vw, 24px)', 
-                    background: 'var(--accent-gradient)', 
-                    borderRadius: '2px' 
-                  }} 
-                />
-              ))}
-            </div>
-            
-            <div style={{ 
-              fontSize: '0.7rem', 
-              color: 'var(--text-secondary)', 
-              fontWeight: 700, 
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase'
-            }}>
-              Live GSAP Stagger
-            </div>
-          </div>
+    <section id="tech" ref={containerRef} className="tech container">
+      <div className="section-head">
+        <span className="eyebrow"><span className="num">05</span> Stack</span>
+        <div>
+          <h2>Ferramentas do <em>ofício</em></h2>
         </div>
+      </div>
 
-        {/* Tech Ticker */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '5rem',
-          paddingTop: '4rem',
-          borderTop: '1px solid var(--border-color)'
-        }}>
-          <div style={{ flexShrink: 0 }}>
-            <h2 style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--accent-light)' }}>STACK</h2>
-          </div>
-
-          <div style={{
-            position: 'relative',
-            width: '100%',
-            overflow: 'hidden',
-            display: 'flex',
-            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
-          }}>
-            <motion.div
-              animate={{ x: ['0%', '-33.33%'] }}
-              transition={{
-                repeat: Infinity,
-                ease: 'linear',
-                duration: 25
-              }}
-              style={{
-                display: 'flex',
-                gap: '5rem',
-                alignItems: 'center',
-                width: 'max-content'
-              }}
-            >
-              {duplicatedTechs.map((tech, idx) => (
-                <div
-                  key={`${tech}-${idx}`}
-                  style={{
-                    color: 'var(--text-secondary)',
-                    fontSize: '1rem',
-                    fontWeight: 500,
-                    whiteSpace: 'nowrap',
-                    letterSpacing: '0.1em'
-                  }}
-                >
-                  {tech}
-                </div>
+      <div className="stack-grid" style={{ display: 'grid', gridTemplateColumns: '220px repeat(4, 1fr)', gap: '2rem' }}>
+        <div />
+        {stack.map(({ group, items }) => (
+          <div key={group} className="stack-col" style={{ borderTop: '1px solid var(--border-strong)', paddingTop: '1.25rem' }}>
+            <span className="eyebrow" style={{ marginBottom: '1.25rem' }}>{group}</span>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+              {items.map((item) => (
+                <li key={item} style={{ fontSize: '1rem' }}>{item}</li>
               ))}
-            </motion.div>
+            </ul>
           </div>
-        </div>
-
+        ))}
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @media (max-width: 900px) {
-          .gsap-feature {
-            grid-template-columns: 1fr !important;
-            text-align: center;
-          }
-          .gsap-feature > div:first-child {
-            align-items: center;
-          }
-          .gsap-feature p {
-            text-align: center;
-          }
-        }
-        @media (max-width: 600px) {
-          #tech > .container > div:last-child {
-            flex-direction: column;
-            gap: 2rem !important;
-          }
+        @media (max-width: 1024px) {
+          .stack-grid { grid-template-columns: repeat(2, 1fr) !important; row-gap: 3rem !important; }
+          .stack-grid > div:first-child { display: none; }
         }
       ` }} />
     </section>

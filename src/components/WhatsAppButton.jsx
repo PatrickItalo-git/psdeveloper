@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
@@ -8,45 +7,28 @@ const WhatsAppButton = () => {
       href="https://wa.me/5546999011726?text=Olá%20Patrick!%20Gostaria%20de%20fazer%20um%20orçamento."
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 20 }}
+      aria-label="Conversar no WhatsApp"
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      transition={{ delay: 1 }}
+      whileHover={{ y: -2 }}
       style={{
         position: 'fixed',
-        bottom: '30px',
-        right: '30px',
-        width: '60px',
-        height: '60px',
-        background: 'var(--accent-gradient)',
+        bottom: '24px',
+        right: '24px',
+        width: '52px',
+        height: '52px',
+        backgroundColor: 'var(--accent-color)',
         color: '#ffffff',
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 10px 30px var(--accent-glow)',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
         zIndex: 9000,
-        textDecoration: 'none',
-        border: '1px solid var(--border-color)'
       }}
     >
-      <MessageCircle size={28} />
-      
-      {/* Subtle Border Glow */}
-      <span style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        border: '1px solid var(--accent-light)',
-        animation: 'pulseMinimal 3s infinite'
-      }} />
-      <style>{`
-        @keyframes pulseMinimal {
-          0% { transform: scale(1); opacity: 0.5; }
-          100% { transform: scale(1.4); opacity: 0; }
-        }
-      `}</style>
+      <MessageCircle size={22} strokeWidth={1.75} />
     </motion.a>
   );
 };

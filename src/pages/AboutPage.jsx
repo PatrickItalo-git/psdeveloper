@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import About from '../components/About.jsx';
 import CurrentRoles from '../components/CurrentRoles.jsx';
 import Tech from '../components/Tech.jsx';

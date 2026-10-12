@@ -3,72 +3,58 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 
-import imgOdonto from '../images/proj_odonto.png';
-import imgPersonal from '../images/proj_personal.png';
-import imgMarketing from '../images/proj_marketing.png';
-import imgSaas from '../images/proj_saas.png';
-import imgSpace from '../images/proj_space.png';
+import imgTeppa from '../images/proj_teppa.jpg';
+import imgPortabelly from '../images/proj_portabelly.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const projectsData = [
-  { title: 'Clínica SmileBright', category: 'Saúde & Bem-estar', description: 'Experiência digital premium para cuidados odontológicos de elite.', image: imgOdonto, link: '/PROJETOS/clinica-odontologica/index.html' },
-  { title: 'Apex Personal', category: 'Fitness & Performance', description: 'Plataforma de alta performance para atletas e treinamento personalizado.', image: imgPersonal, link: '/PROJETOS/personal-trainer/index.html' },
-  { title: 'Lumina Media', category: 'Marketing & Estratégia', description: 'Estratégia digital moderna para marcas globais com foco em conversão.', image: imgMarketing, link: '/PROJETOS/agencia-marketing/index.html' },
-  { title: 'SyncTask SaaS', category: 'Produtividade', description: 'Plataforma de gestão de fluxo de trabalho de próxima geração.', image: imgSaas, link: '/PROJETOS/plataforma-saas/index.html' },
-  { title: 'Starlink Explorer', category: 'Educação & Ciência', description: 'Interface imersiva para visualização de dados espaciais em tempo real.', image: imgSpace, link: '/PROJETOS/e-commerce-espacial/index.html' },
+  {
+    title: 'Jeferson Teppa',
+    category: 'Arquitetura & Interiores',
+    description: 'Site institucional para o escritório do arquiteto Jeferson Teppa — “Arquitetura com propósito”. Portfólio de projetos, clientes, serviços e contato direto.',
+    image: imgTeppa,
+    link: 'https://jeferson-teppa.vercel.app/',
+    domain: 'jeferson-teppa.vercel.app',
+  },
+  {
+    title: 'Portábelly',
+    category: 'Indústria & Fábrica',
+    description: 'Site da Portábelly (antiga Portas Alvorada), fábrica de portas de alto padrão em Renascença - PR. Catálogo de produtos, história da marca e pedidos de orçamento.',
+    image: imgPortabelly,
+    link: 'https://www.portabelly.com.br/',
+    domain: 'portabelly.com.br',
+  },
 ];
 
 const Portfolio = () => {
   const containerRef = useRef(null);
-  const headerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header
-      gsap.from('.portfolio-header-line', {
-        scrollTrigger: { trigger: headerRef.current, start: 'top 88%', once: true },
-        scaleX: 0,
-        transformOrigin: 'left center',
-        duration: 0.8,
-        ease: 'power4.inOut',
-      });
-
-      gsap.from('.portfolio-h2-line', {
-        scrollTrigger: { trigger: headerRef.current, start: 'top 85%', once: true },
-        y: '105%',
-        stagger: 0.1,
-        duration: 1.2,
-        ease: 'expo.out',
-      });
-
-      gsap.from('.portfolio-subtitle', {
-        scrollTrigger: { trigger: headerRef.current, start: 'top 82%', once: true },
+      gsap.from('.portfolio .section-head > *', {
+        scrollTrigger: { trigger: '.portfolio .section-head', start: 'top 85%', once: true },
         y: 20,
         opacity: 0,
-        duration: 0.8,
+        stagger: 0.1,
+        duration: 0.9,
         ease: 'power3.out',
       });
 
-      // Each project item: clip-path image reveal + text fade
-      containerRef.current.querySelectorAll('.project-item').forEach((item, i) => {
-        const imgWrap = item.querySelector('.project-image-wrapper');
-        const meta = item.querySelector('.project-meta');
-
-        gsap.from(imgWrap, {
-          scrollTrigger: { trigger: item, start: 'top 82%', once: true },
-          clipPath: 'inset(0 100% 0 0)',
-          duration: 1.3,
-          delay: i % 2 === 0 ? 0 : 0.12,
-          ease: 'expo.inOut',
-        });
-
-        gsap.from(meta, {
-          scrollTrigger: { trigger: item, start: 'top 80%', once: true },
-          y: 24,
+      containerRef.current.querySelectorAll('.project-item').forEach((item) => {
+        gsap.from(item.querySelector('.project-image-wrapper'), {
+          scrollTrigger: { trigger: item, start: 'top 85%', once: true },
+          clipPath: 'inset(8% 8% 8% 8%)',
           opacity: 0,
-          duration: 0.9,
-          delay: 0.3 + (i % 2 === 0 ? 0 : 0.12),
+          duration: 1.2,
+          ease: 'power3.out',
+        });
+        gsap.from(item.querySelectorAll('.project-meta > *'), {
+          scrollTrigger: { trigger: item, start: 'top 75%', once: true },
+          y: 16,
+          opacity: 0,
+          stagger: 0.08,
+          duration: 0.8,
           ease: 'power3.out',
         });
       });
@@ -78,109 +64,66 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section id="portfolio" ref={containerRef} className="container" style={{ paddingBlock: 'clamp(60px, 12vw, 140px)' }}>
-      <div ref={headerRef} style={{ marginBottom: 'clamp(3rem, 10vw, 7rem)' }}>
-        <div className="portfolio-header-line" style={{ width: '40px', height: '2px', background: 'var(--accent-gradient)', marginBottom: '2.5rem' }} />
-
-        <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: 'clamp(2.2rem, 5.5vw, 4.5rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
-            <span className="portfolio-h2-line" style={{ display: 'block' }}>TRABALHOS <span className="text-accent">SELECIONADOS</span></span>
-          </h2>
+    <section id="portfolio" ref={containerRef} className="portfolio container">
+      <div className="section-head">
+        <span className="eyebrow"><span className="num">04</span> Trabalhos</span>
+        <div>
+          <h2>Trabalhos <em>selecionados</em></h2>
+          <p>Sites reais, no ar, desenvolvidos para clientes que precisavam de uma presença digital à altura do seu negócio.</p>
         </div>
-
-        <p className="portfolio-subtitle" style={{ color: 'var(--text-secondary)', maxWidth: '560px', fontSize: '1.05rem', lineHeight: 1.7 }}>
-          Produtos digitais desenvolvidos com precisão técnica e propósito estratégico para transformar negócios.
-        </p>
       </div>
 
-      <div className="portfolio-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: 'clamp(2rem, 5vw, 6rem)',
-      }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(5rem, 10vw, 9rem)' }}>
         {projectsData.map((project, idx) => (
           <a
-            key={idx}
+            key={project.title}
             href={project.link}
+            target="_blank"
+            rel="noreferrer"
             className="project-item"
-            style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+            style={{ display: 'block', color: 'inherit' }}
           >
             <div className="project-image-wrapper" style={{
-              aspectRatio: '16/10',
+              aspectRatio: '16/9',
               overflow: 'hidden',
-              backgroundColor: 'var(--gray-dark)',
-              marginBottom: '2rem',
-              position: 'relative',
-              borderRadius: '14px',
+              backgroundColor: 'var(--surface)',
               border: '1px solid var(--border-color)',
-              clipPath: 'inset(0 0% 0 0 round 14px)',
+              marginBottom: '2rem',
             }}>
               <img
                 src={project.image}
-                alt={project.title}
+                alt={`Página inicial do site ${project.title}`}
                 className="project-img"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
               />
-              <div className="project-overlay" style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(180deg, rgba(5,8,15,0.25) 0%, rgba(20,50,140,0.65) 100%)',
-                opacity: 0,
-                transition: 'opacity 0.5s ease',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <div className="project-btn" style={{
-                  width: '60px',
-                  height: '60px',
-                  borderRadius: '50%',
-                  background: 'var(--accent-gradient)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  boxShadow: '0 10px 30px var(--accent-glow)',
-                  transform: 'translateY(20px) scale(0.85)',
-                  transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
-                }}>
-                  <ArrowUpRight size={22} />
-                </div>
-              </div>
             </div>
 
-            <div className="project-meta">
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--accent-light)', textTransform: 'uppercase', letterSpacing: '0.22em', marginBottom: '0.6rem', display: 'block' }}>
-                {project.category}
+            <div className="project-meta" style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: '2rem', alignItems: 'baseline' }}>
+              <span className="eyebrow">
+                <span className="num">{String(idx + 1).padStart(2, '0')}</span> {project.category}
               </span>
-              <h3 style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
-                {project.title}
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: '100%' }}>
-                {project.description}
-              </p>
+              <div>
+                <h3 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '0.75rem' }}>{project.title}</h3>
+                <p style={{ color: 'var(--text-secondary)', maxWidth: '58ch' }}>{project.description}</p>
+              </div>
+              <span className="project-link text-link" style={{ fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
+                {project.domain} <ArrowUpRight size={15} />
+              </span>
             </div>
           </a>
         ))}
       </div>
 
-
       <style dangerouslySetInnerHTML={{ __html: `
-        .project-item:hover .project-img { transform: scale(1.06); }
-        .project-item:hover .project-overlay { opacity: 1; }
-        .project-item:hover .project-btn { transform: translateY(0) scale(1); }
-        .project-img { transition: transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease; filter: saturate(0.9); }
-        .project-item:hover .project-img { filter: saturate(1); }
+        .project-img { transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+        .project-item:hover .project-img { transform: scale(1.03); }
+        .project-item:hover .project-link { color: var(--accent-light); border-color: var(--accent-light); }
         .project-meta h3 { transition: color 0.3s ease; }
         .project-item:hover h3 { color: var(--accent-light); }
 
-        .project-meta p { max-width: 440px; }
-
-        @media (max-width: 768px) {
-          .portfolio-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .project-meta p { max-width: 100% !important; }
-          .project-btn { width: 48px !important; height: 48px !important; }
-          .project-image-wrapper { border-radius: 6px !important; }
+        @media (max-width: 860px) {
+          .project-meta { grid-template-columns: 1fr !important; gap: 1rem !important; }
         }
       ` }} />
     </section>

@@ -5,71 +5,18 @@ import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const features = ['Alta Performance', 'Arquitetura Escalável', 'Design Premium'];
-
 const CallToAction = () => {
   const sectionRef = useRef(null);
-  const btnRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Background line expand
-      gsap.from('.cta-border-line', {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
-        scaleX: 0,
-        transformOrigin: 'left center',
-        duration: 1,
-        ease: 'power4.inOut',
-      });
-
-      // Heading lines reveal
-      gsap.from('.cta-heading-line', {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 82%', once: true },
-        y: '105%',
+      gsap.from('.cta-fade', {
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        y: 24,
+        opacity: 0,
         stagger: 0.12,
-        duration: 1.2,
-        ease: 'expo.out',
-      });
-
-      // Sub paragraph + features
-      gsap.from('.cta-sub', {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 78%', once: true },
-        y: 24,
-        opacity: 0,
-        duration: 0.8,
+        duration: 1,
         ease: 'power3.out',
-      });
-
-      gsap.from('.cta-feature', {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 76%', once: true },
-        y: 20,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
-
-      gsap.from(btnRef.current, {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 74%', once: true },
-        y: 24,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
-
-      // Magnetic button
-      const btn = btnRef.current;
-      if (!btn) return;
-
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = (e.clientX - rect.left - rect.width / 2) * 0.35;
-        const y = (e.clientY - rect.top - rect.height / 2) * 0.35;
-        gsap.to(btn, { x, y, duration: 0.4, ease: 'power2.out' });
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
       });
     }, sectionRef);
 
@@ -77,61 +24,21 @@ const CallToAction = () => {
   }, []);
 
   return (
-    <section
-      id="cta"
-      ref={sectionRef}
-      style={{ padding: '140px 0', borderTop: '1px solid var(--border-color)' }}
-    >
-      <div className="container">
-        <div style={{
-          background: 'radial-gradient(ellipse 70% 80% at 50% 0%, rgba(47,107,255,0.22) 0%, transparent 70%), linear-gradient(180deg, #0a1428 0%, #060b17 100%)',
-          padding: 'clamp(3rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem)',
-          textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          border: '1px solid rgba(47,107,255,0.25)',
-          borderRadius: '20px',
-        }}>
-          {/* Top decorative line */}
-          <div className="cta-border-line" style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '1px',
-            background: 'linear-gradient(90deg, transparent, var(--accent-light), transparent)',
-            opacity: 0.8,
-          }} />
-
-          <div style={{ overflow: 'hidden', marginBottom: '2.5rem' }}>
-            <h2 style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', fontWeight: 700, lineHeight: 1.0, letterSpacing: '-0.05em' }}>
-              <span className="cta-heading-line" style={{ display: 'block' }}>PRONTO PARA ESCALAR</span>
-              <span className="cta-heading-line text-gradient" style={{ display: 'block' }}>SUA PRESENÇA DIGITAL?</span>
-            </h2>
-          </div>
-
-          <p className="cta-sub" style={{ color: 'var(--text-secondary)', fontSize: 'clamp(1rem, 2vw, 1.2rem)', maxWidth: '640px', margin: '0 auto 3.5rem', lineHeight: 1.7 }}>
-            Vamos construir uma solução que combine excelência técnica com os objetivos estratégicos do seu negócio.
-          </p>
-
-          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '3rem', marginBottom: '4.5rem' }}>
-            {features.map(f => (
-              <div key={f} className="cta-feature" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--accent-light)', display: 'inline-block', flexShrink: 0 }} />
-                {f}
-              </div>
-            ))}
-          </div>
-
-          <a
-            ref={btnRef}
-            href="https://wa.me/5546999011726"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-primary"
-            style={{ padding: '1.4rem 4rem', fontSize: '0.9rem', display: 'inline-flex' }}
-          >
-            Iniciar Projeto <ArrowRight size={18} />
+    <section id="cta" ref={sectionRef} className="container">
+      <div style={{ borderTop: '1px solid var(--border-strong)', paddingTop: 'clamp(4rem, 8vw, 7rem)', textAlign: 'center' }}>
+        <span className="eyebrow cta-fade" style={{ marginBottom: '2rem' }}>Próximo passo</span>
+        <h2 className="cta-fade" style={{ fontSize: 'clamp(2.6rem, 7vw, 6rem)', maxWidth: '16ch', margin: '0 auto 2rem' }}>
+          Vamos construir algo <em>que dure</em>?
+        </h2>
+        <p className="lead cta-fade" style={{ maxWidth: '50ch', margin: '0 auto 3rem' }}>
+          Conte sobre o seu projeto. Respondo pessoalmente, com uma proposta clara e sem enrolação.
+        </p>
+        <div className="cta-fade" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="https://wa.me/5546999011726" target="_blank" rel="noreferrer" className="btn-primary">
+            Iniciar projeto <ArrowRight size={16} />
+          </a>
+          <a href="mailto:patrick.souza.dev@gmail.com" className="btn-outline">
+            Enviar e-mail
           </a>
         </div>
       </div>

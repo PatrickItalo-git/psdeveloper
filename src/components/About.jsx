@@ -1,100 +1,74 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GraduationCap, Briefcase, ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import profileImg from '../images/profile.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const education = [
+  { course: 'Pós-Graduação em Desenvolvimento Full Stack', school: 'Anhanguera', year: '2025', href: '/certificados/Certificado-Pos-Graduacao.pdf' },
+  { course: 'Análise e Desenvolvimento de Sistemas', school: 'UNIPAR', year: '2024', href: '/certificados/Certificado-Tecnologo.pdf' },
+];
+
+const experience = [
+  { role: 'Professor Universitário', company: 'UNIPAR', period: '2026 — atual', desc: 'Desenvolvimento Web moderno e princípios de DevOps.' },
+  { role: 'Analista de Desenvolvimento', company: 'Grupo Ítalo', period: '2025 — atual', desc: 'Performance, PostgreSQL e arquitetura de APIs em produção.' },
+  { role: 'Desenvolvedor Full-Stack', company: 'Grifo Sistemas', period: '2024 — 2025', desc: 'ERP com Ruby on Rails, React e GraphQL.' },
+];
+
+const Row = ({ left, title, sub, desc, link }) => (
+  <div className="cv-row" style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '1.5rem', padding: '1.5rem 0', borderBottom: '1px solid var(--border-color)' }}>
+    <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontVariantNumeric: 'tabular-nums' }}>{left}</span>
+    <div>
+      <p style={{ fontSize: '1.05rem', marginBottom: '0.25rem' }}>{title}</p>
+      <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{sub}</p>
+      {desc && <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.5rem' }}>{desc}</p>}
+      {link && (
+        <a href={link} target="_blank" rel="noreferrer" className="text-link" style={{ fontSize: '0.82rem', marginTop: '0.75rem' }}>
+          Ver certificado <ArrowUpRight size={13} />
+        </a>
+      )}
+    </div>
+  </div>
+);
 
 const About = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header tag
-      gsap.from('.about-tag', {
-        scrollTrigger: { trigger: '.about-tag', start: 'top 92%', once: true },
-        x: -24,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
-
-      // Heading lines
-      gsap.from('.about-heading-line', {
-        scrollTrigger: { trigger: '.about-heading-wrap', start: 'top 85%', once: true },
-        y: '105%',
-        stagger: 0.13,
-        duration: 1.2,
-        ease: 'expo.out',
-      });
-
-      // Image clip-path reveal
-      gsap.from('.about-img-outer', {
-        scrollTrigger: { trigger: '.about-img-outer', start: 'top 82%', once: true },
-        clipPath: 'inset(0 100% 0 0)',
-        duration: 1.4,
-        ease: 'expo.inOut',
-      });
-
-      // Subtle parallax on image
-      gsap.to('.profile-parallax', {
-        scrollTrigger: {
-          trigger: '.about-img-outer',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        },
-        y: -50,
-        ease: 'none',
-      });
-
-      // Bio text
-      gsap.from('.about-bio > p', {
-        scrollTrigger: { trigger: '.about-bio', start: 'top 85%', once: true },
-        y: 28,
-        opacity: 0,
-        stagger: 0.18,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
-
-      // Quote
-      gsap.from('.about-quote', {
-        scrollTrigger: { trigger: '.about-quote', start: 'top 88%', once: true },
-        x: -18,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
-
-      // Stats row
-      gsap.from('.about-stat', {
-        scrollTrigger: { trigger: '.about-stats-row', start: 'top 88%', once: true },
-        y: 24,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: 'power3.out',
-      });
-
-      // Credentials section header lines
-      gsap.from('.cred-heading', {
-        scrollTrigger: { trigger: '.credentials-section', start: 'top 85%', once: true },
+      gsap.from('.about .section-head > *', {
+        scrollTrigger: { trigger: '.about .section-head', start: 'top 85%', once: true },
         y: 20,
         opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
+        stagger: 0.1,
+        duration: 0.9,
         ease: 'power3.out',
       });
 
-      // Timeline items
-      gsap.from('.timeline-item', {
-        scrollTrigger: { trigger: '.credentials-section', start: 'top 80%', once: true },
-        x: -20,
+      gsap.from('.about-figure', {
+        scrollTrigger: { trigger: '.about-figure', start: 'top 85%', once: true },
+        clipPath: 'inset(0 0 100% 0)',
+        duration: 1.3,
+        ease: 'power3.inOut',
+      });
+
+      gsap.from('.about-text > *', {
+        scrollTrigger: { trigger: '.about-text', start: 'top 85%', once: true },
+        y: 20,
         opacity: 0,
         stagger: 0.12,
-        duration: 0.8,
+        duration: 0.9,
+        ease: 'power3.out',
+      });
+
+      gsap.from('.cv-row', {
+        scrollTrigger: { trigger: '.about-cv', start: 'top 85%', once: true },
+        y: 16,
+        opacity: 0,
+        stagger: 0.06,
+        duration: 0.7,
         ease: 'power3.out',
       });
     }, containerRef);
@@ -103,230 +77,73 @@ const About = () => {
   }, []);
 
   return (
-    <section
-      id="sobre"
-      ref={containerRef}
-      className="container"
-      style={{ borderTop: '1px solid var(--border-color)', paddingBlock: '120px' }}
-    >
-      {/* ── Section Header ── */}
-      <div style={{ marginBottom: '5rem' }}>
-        <span className="about-tag section-tag" style={{ marginBottom: '2rem' }}>
-          <MapPin size={11} />
-          Francisco Beltrão, PR — Brasil
-        </span>
-
-        <div className="about-heading-wrap" style={{ overflow: 'hidden' }}>
-          <h2 style={{ fontSize: 'clamp(1.5rem, 8vw, 6rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
-            <span className="about-heading-line" style={{ display: 'block' }}>ENGENHARIA DE</span>
-            <span className="about-heading-line text-gradient" style={{ display: 'block' }}>
-              SOLUÇÕES DIGITAIS.
-            </span>
-          </h2>
-        </div>
-      </div>
-
-      {/* ── Main Grid: Image | Bio ── */}
-      <div className="about-main-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 'clamp(3rem, 8vw, 8rem)',
-        alignItems: 'start',
-        marginBottom: '8rem',
-      }}>
-
-        {/* Profile image */}
-        <div className="about-img-outer" style={{
-          overflow: 'hidden',
-          aspectRatio: '3/4',
-          backgroundColor: 'var(--gray-dark)',
-          borderRadius: '16px',
-          border: '1px solid var(--border-color)',
-          boxShadow: '0 30px 80px -30px var(--accent-glow)',
-          position: 'relative',
-          clipPath: 'inset(0 0% 0 0 round 16px)',
-        }}>
-          <img
-            src={profileImg}
-            alt="Patrick Gattini"
-            className="profile-parallax"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              display: 'block',
-              objectPosition: 'center 30%',
-              filter: 'saturate(0.85) contrast(1.05)',
-            }}
-          />
-          {/* Blue tone overlay to integrate the photo with the palette */}
-          <div aria-hidden="true" style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(47,107,255,0.10) 0%, transparent 40%, rgba(5,8,15,0.8) 100%)',
-            pointerEvents: 'none',
-          }} />
-          <div style={{ position: 'absolute', left: '1.5rem', bottom: '1.5rem', right: '1.5rem', color: '#fff' }}>
-            <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>Patrick Gattini</p>
-            <p style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent-light)' }}>Full-Stack · Professor</p>
-          </div>
-        </div>
-
-        {/* Bio column */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-          <div className="about-bio" style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-            <p style={{ color: 'var(--text-primary)', fontSize: 'clamp(1.05rem, 1.8vw, 1.2rem)', lineHeight: 1.8, fontWeight: 400 }}>
-              Sou Patrick Gattini, Desenvolvedor Full-Stack e Professor Universitário, dedicado a transformar desafios complexos de negócios em soluções digitais elegantes e escaláveis.
-            </p>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.8 }}>
-              Atualmente, lidero iniciativas de desenvolvimento no{' '}
-              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Grupo Ítalo</strong>{' '}
-              e contribuo para a formação da próxima geração de talentos na{' '}
-              <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>UNIPAR</strong>.
-            </p>
-          </div>
-
-          <blockquote className="about-quote" style={{
-            borderLeft: '2px solid var(--accent-color)',
-            paddingLeft: '1.75rem',
-            fontStyle: 'italic',
-            color: 'var(--text-secondary)',
-            fontSize: '0.95rem',
-            lineHeight: 1.85,
-          }}>
-            "A engenharia de software não é apenas sobre escrever código — é sobre construir sistemas que perdurem e gerem valor real."
-          </blockquote>
-
-        </div>
-      </div>
-
-      {/* ── Credentials: Education + Experience ── */}
-      <div
-        className="credentials-section"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'clamp(3rem, 8vw, 8rem)',
-          paddingTop: '6rem',
-          borderTop: '1px solid var(--border-color)',
-        }}
-      >
-        {/* Education */}
+    <section id="sobre" ref={containerRef} className="about container">
+      <div className="section-head">
+        <span className="eyebrow"><span className="num">01</span> Sobre</span>
         <div>
-          <div className="cred-heading" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '3.5rem' }}>
-            <GraduationCap size={20} strokeWidth={1.5} style={{ color: 'var(--accent-light)', flexShrink: 0 }} />
-            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
-              Formação Acadêmica
-            </h4>
-          </div>
+          <h2>Engenharia de <em>soluções</em> digitais.</h2>
+        </div>
+      </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-            {[
-              { course: 'Pós-Graduação em Dev Full Stack', school: 'Anhanguera', year: '2025' },
-              { course: 'Análise e Desenv. de Sistemas', school: 'UNIPAR', year: '2024' },
-            ].map(({ course, school, year }) => (
-              <div
-                key={course}
-                className="timeline-item"
-                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid rgba(47,107,255,0.35)' }}
-              >
-                <p style={{ fontWeight: 600, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{course}</p>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                  {school} — {year}
-                </p>
-                <a
-                  href="#"
-                  style={{ fontSize: '0.7rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-secondary)', letterSpacing: '0.12em', textTransform: 'uppercase', transition: 'color 0.3s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-light)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                >
-                  Ver certificado <ArrowUpRight size={12} />
-                </a>
-              </div>
+      <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr 1.2fr', gap: '2rem', alignItems: 'start', marginBottom: '7rem' }}>
+        <div />
+
+        <figure style={{ margin: 0 }}>
+          <div className="about-figure" style={{ aspectRatio: '4/5', overflow: 'hidden', backgroundColor: 'var(--surface)' }}>
+            <img
+              src={profileImg}
+              alt="Patrick Gattini"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block', filter: 'grayscale(0.35) contrast(1.05)' }}
+            />
+          </div>
+          <figcaption style={{ marginTop: '0.9rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+            Patrick Gattini — Francisco Beltrão, PR
+          </figcaption>
+        </figure>
+
+        <div className="about-text" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingLeft: 'clamp(0rem, 3vw, 2.5rem)' }}>
+          <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.6rem, 2.6vw, 2.2rem)', lineHeight: 1.25 }}>
+            Sou desenvolvedor full-stack e professor universitário. Transformo desafios de negócio em software <em style={{ color: 'var(--accent-light)' }}>claro e duradouro</em>.
+          </p>
+          <p className="lead">
+            Hoje lidero iniciativas de desenvolvimento no <span style={{ color: 'var(--text-primary)' }}>Grupo Ítalo</span> e ensino a próxima geração de desenvolvedores na <span style={{ color: 'var(--text-primary)' }}>UNIPAR</span>.
+          </p>
+          <blockquote style={{ borderLeft: '1px solid var(--accent-color)', paddingLeft: '1.5rem', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+            “Engenharia de software não é só escrever código — é construir sistemas que perdurem e gerem valor real.”
+          </blockquote>
+        </div>
+      </div>
+
+      <div className="about-cv" style={{ display: 'grid', gridTemplateColumns: '220px 1fr 1fr', gap: '2rem' }}>
+        <div />
+        <div>
+          <span className="eyebrow" style={{ marginBottom: '1rem' }}>Formação</span>
+          <div style={{ borderTop: '1px solid var(--border-strong)' }}>
+            {education.map(({ course, school, year, href }) => (
+              <Row key={course} left={year} title={course} sub={school} link={href} />
             ))}
           </div>
         </div>
-
-        {/* Experience */}
         <div>
-          <div className="cred-heading" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '3.5rem' }}>
-            <Briefcase size={20} strokeWidth={1.5} style={{ color: 'var(--accent-light)', flexShrink: 0 }} />
-            <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
-              Experiência Profissional
-            </h4>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-            {[
-              {
-                role: 'Professor Universitário',
-                company: 'UNIPAR',
-                period: '2026 · Presente',
-                desc: 'Desenvolvimento Web moderno e princípios de DevOps para a próxima geração.',
-              },
-              {
-                role: 'Analista de Desenvolvimento',
-                company: 'Grupo Ítalo',
-                period: '2025 · Presente',
-                desc: 'Otimização de performance e arquitetura de APIs robustas em produção.',
-              },
-              {
-                role: 'Desenvolvedor Full-Stack',
-                company: 'Grifo Sistemas',
-                period: '2024 · 2025',
-                desc: 'ERP com Ruby on Rails, React e GraphQL.',
-              },
-            ].map(({ role, company, period, desc }) => (
-              <div
-                key={role}
-                className="timeline-item"
-                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid rgba(47,107,255,0.35)' }}
-              >
-                <p style={{ fontWeight: 600, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{role}</p>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.75rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                  {company} — {period}
-                </p>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>{desc}</p>
-              </div>
+          <span className="eyebrow" style={{ marginBottom: '1rem' }}>Experiência</span>
+          <div style={{ borderTop: '1px solid var(--border-strong)' }}>
+            {experience.map(({ role, company, period, desc }) => (
+              <Row key={role} left={period} title={role} sub={company} desc={desc} />
             ))}
           </div>
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        @media (max-width: 860px) {
-          .about-main-grid, .credentials-section {
-            grid-template-columns: 1fr !important;
-            gap: 3.5rem !important;
-          }
-          .about-img-outer {
-            aspect-ratio: 1 !important;
-            max-height: 400px;
-            width: 100%;
-          }
-          .about-bio {
-            text-align: center;
-          }
-          .about-quote {
-            text-align: center;
-            border-left: none;
-            border-top: 1px solid var(--border-color);
-            padding: 1.5rem 0 0;
-          }
-          .about-stats-row {
-            justify-content: center;
-            gap: 2rem !important;
-          }
+        @media (max-width: 1024px) {
+          .about-grid, .about-cv { grid-template-columns: 1fr 1fr !important; }
+          .about-grid > div:first-child, .about-cv > div:first-child { display: none; }
         }
-        @media (max-width: 480px) {
-          .about-main-grid { gap: 2.5rem !important; }
-          .timeline-item { padding-left: 1.25rem !important; }
-          .about-tag { font-size: 0.6rem; letter-spacing: 0.2em; }
+        @media (max-width: 760px) {
+          .about-grid, .about-cv { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          .about-text { padding-left: 0 !important; }
+          .cv-row { grid-template-columns: 1fr !important; gap: 0.25rem !important; }
         }
-
       ` }} />
     </section>
   );

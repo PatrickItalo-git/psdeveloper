@@ -8,17 +8,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roles = [
   {
-    tag: 'Instituição de Ensino',
+    tag: 'Ensino',
     name: 'UNIPAR',
     role: 'Professor de ADS',
-    desc: 'Leciono Desenvolvimento Web e DevOps, formando profissionais com as melhores práticas do mercado global.',
+    desc: 'Leciono Desenvolvimento Web e DevOps, formando profissionais com as melhores práticas do mercado.',
     image: uniparImg,
   },
   {
-    tag: 'Atuação no Mercado',
+    tag: 'Mercado',
     name: 'Grupo Ítalo',
     role: 'Analista de Desenvolvimento',
-    desc: 'Desenvolvimento de ferramentas de performance, otimização PostgreSQL e arquitetura de APIs críticas para o grupo.',
+    desc: 'Ferramentas de performance, otimização PostgreSQL e arquitetura de APIs críticas para o grupo.',
     image: italoImg,
   },
 ];
@@ -28,50 +28,22 @@ const CurrentRoles = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section header
-      gsap.from('.roles-h2-line', {
-        scrollTrigger: { trigger: '.roles-header', start: 'top 88%', once: true },
-        y: '105%',
-        stagger: 0.1,
-        duration: 1.1,
-        ease: 'expo.out',
-      });
-
-      gsap.from('.roles-sub', {
-        scrollTrigger: { trigger: '.roles-header', start: 'top 82%', once: true },
+      gsap.from('.roles .section-head > *', {
+        scrollTrigger: { trigger: '.roles .section-head', start: 'top 85%', once: true },
         y: 20,
         opacity: 0,
-        duration: 0.8,
+        stagger: 0.1,
+        duration: 0.9,
         ease: 'power3.out',
       });
 
-      // Cards: image clip-path + content fade
-      containerRef.current.querySelectorAll('.role-card').forEach((card, i) => {
-        const imgWrap = card.querySelector('.role-img-wrap');
-        const content = card.querySelector('.role-content');
-
-        gsap.from(imgWrap, {
-          scrollTrigger: { trigger: card, start: 'top 82%', once: true },
-          clipPath: 'inset(0 0 100% 0)',
-          duration: 1.2,
-          delay: i * 0.15,
-          ease: 'expo.inOut',
-        });
-
-        gsap.from(content.children, {
-          scrollTrigger: { trigger: card, start: 'top 78%', once: true },
-          y: 20,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.8,
-          delay: 0.3 + i * 0.15,
-          ease: 'power3.out',
-        });
-
-        // Image zoom on hover
-        const img = imgWrap.querySelector('img');
-        card.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.06, duration: 0.7, ease: 'power2.out' }));
-        card.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.7, ease: 'power2.out' }));
+      gsap.from('.role-card', {
+        scrollTrigger: { trigger: '.roles-grid', start: 'top 85%', once: true },
+        y: 24,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: 'power3.out',
       });
     }, containerRef);
 
@@ -79,77 +51,39 @@ const CurrentRoles = () => {
   }, []);
 
   return (
-    <section id="atuacao" className="container" ref={containerRef} style={{ paddingBlock: '120px', borderTop: '1px solid var(--border-color)' }}>
-      <div className="roles-header" style={{ textAlign: 'left', marginBottom: '5rem' }}>
-        <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1 }}>
-            <span className="roles-h2-line" style={{ display: 'block' }}>
-              ATUAÇÃO <span className="text-accent">ATUAL</span>
-            </span>
-          </h2>
+    <section id="atuacao" ref={containerRef} className="roles container">
+      <div className="section-head">
+        <span className="eyebrow"><span className="num">02</span> Atuação</span>
+        <div>
+          <h2>Onde atuo <em>hoje</em></h2>
+          <p>Instituições onde aplico e compartilho conhecimento tecnológico diariamente.</p>
         </div>
-        <p className="roles-sub" style={{ color: 'var(--text-secondary)', maxWidth: '560px', fontSize: '1.05rem', lineHeight: 1.7 }}>
-          Instituições onde aplico e compartilho conhecimento tecnológico diariamente.
-        </p>
       </div>
 
-      <div className="roles-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: 'clamp(1.5rem, 5vw, 4rem)',
-      }}>
+      <div className="roles-grid" style={{ display: 'grid', gridTemplateColumns: '220px 1fr 1fr', gap: '2rem' }}>
+        <div />
         {roles.map(({ tag, name, role, desc, image }) => (
-          <div
-            key={name}
-            className="role-card glass-card"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '2rem',
-              padding: '2.5rem',
-              borderRadius: '14px',
-            }}
-          >
-
-            <div className="role-img-wrap" style={{
-              overflow: 'hidden',
-              height: '220px',
-              borderRadius: '10px',
-              clipPath: 'inset(0 0 0% 0)',
-              backgroundColor: '#f4f7fc',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '2rem',
-            }}>
-              <img
-                src={image}
-                alt={'Logo ' + name}
-                style={{ maxWidth: '70%', maxHeight: '100%', objectFit: 'contain', display: 'block', borderRadius: '8px' }}
-              />
+          <article key={name} className="role-card" style={{ borderTop: '1px solid var(--border-strong)', paddingTop: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+              <span className="eyebrow">{tag}</span>
+              <div style={{ width: '56px', height: '56px', backgroundColor: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <img src={image} alt={'Logo ' + name} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+              </div>
             </div>
-
-            <div className="role-content">
-              <span style={{ color: 'var(--accent-light)', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-                {tag}
-              </span>
-              <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--text-primary)', margin: '1rem 0 0.5rem', fontWeight: 700, letterSpacing: '-0.03em' }}>
-                {name}
-              </h3>
-              <p style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.95rem', marginBottom: '0.875rem', letterSpacing: '0.02em' }}>
-                {role}
-              </p>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, fontSize: '0.95rem' }}>
-                {desc}
-              </p>
-            </div>
-          </div>
+            <h3 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', marginBottom: '0.5rem' }}>{name}</h3>
+            <p style={{ color: 'var(--accent-light)', fontSize: '0.95rem', marginBottom: '1rem' }}>{role}</p>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '42ch' }}>{desc}</p>
+          </article>
         ))}
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 1024px) {
+          .roles-grid { grid-template-columns: 1fr 1fr !important; }
+          .roles-grid > div:first-child { display: none; }
+        }
         @media (max-width: 640px) {
-          .roles-grid { grid-template-columns: 1fr !important; }
+          .roles-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
         }
       ` }} />
     </section>
