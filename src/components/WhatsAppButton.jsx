@@ -1,36 +1,36 @@
-import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+import { IconWhatsapp } from './Icons.jsx';
+import { whatsappLink } from '../data/site.js';
 
-const WhatsAppButton = () => {
-  return (
-    <motion.a
-      href="https://wa.me/5546999011726?text=Olá%20Patrick!%20Gostaria%20de%20fazer%20um%20orçamento."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Conversar no WhatsApp"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1 }}
-      whileHover={{ y: -2 }}
-      style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        width: '52px',
-        height: '52px',
-        backgroundColor: 'var(--accent-color)',
-        color: '#ffffff',
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
-        zIndex: 9000,
-      }}
-    >
-      <MessageCircle size={22} strokeWidth={1.75} />
-    </motion.a>
-  );
-};
+const WhatsAppButton = () => (
+  <a
+    href={whatsappLink()}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Conversar no WhatsApp"
+    className="wa-float"
+  >
+    <IconWhatsapp />
+    <style>{`
+      .wa-float {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--night);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 28px rgba(11, 18, 32, 0.22);
+        z-index: 90;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .wa-float:hover { transform: translateY(-3px); color: var(--blue); }
+      @media (max-width: 600px) { .wa-float { right: 18px; bottom: 18px; width: 52px; height: 52px; } }
+    `}</style>
+  </a>
+);
 
 export default WhatsAppButton;

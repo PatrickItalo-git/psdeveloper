@@ -1,119 +1,70 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import Logo from './Logo.jsx';
+import { IconInstagram, IconLinkedin, IconGithub } from './Icons.jsx';
+import { contact, whatsappLink } from '../data/site.js';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const contacts = [
-  { label: 'E-mail', value: 'patrick.souza.dev@gmail.com', href: 'mailto:patrick.souza.dev@gmail.com' },
-  { label: 'WhatsApp', value: '(46) 99901-1726', href: 'https://wa.me/5546999011726' },
+const items = [
+  { icon: <IconInstagram />, label: contact.instagram.handle, href: contact.instagram.url },
+  { icon: <Phone size={18} strokeWidth={1.5} />, label: contact.phoneLabel, href: whatsappLink() },
+  { icon: <Mail size={18} strokeWidth={1.5} />, label: contact.email.toUpperCase(), href: `mailto:${contact.email}` },
+  { icon: <IconLinkedin />, label: 'LINKEDIN', href: contact.linkedin },
+  { icon: <IconGithub />, label: 'GITHUB', href: contact.github },
 ];
 
-const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/patricksouzadev/' },
-  { label: 'Instagram', href: 'https://www.instagram.com/_patrick.edueu_' },
-  { label: 'GitHub', href: 'https://github.com/PatrickItalo-git' },
-];
-
-const Footer = () => {
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.footer-fade', {
-        scrollTrigger: { trigger: footerRef.current, start: 'top 85%', once: true },
-        y: 20,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
-    }, footerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <footer id="contato" ref={footerRef} style={{ padding: '120px 0 48px' }}>
-      <div className="container">
-        <div className="footer-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: '220px 1.4fr 1fr 1fr',
-          gap: '2rem',
-          paddingTop: '1.5rem',
-          borderTop: '1px solid var(--border-strong)',
-          marginBottom: 'clamp(5rem, 10vw, 8rem)',
-        }}>
-          <span className="eyebrow footer-fade"><span className="num">06</span> Contato</span>
-
-          <h2 className="footer-fade" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.25rem)', maxWidth: '12ch' }}>
-            Vamos criar algo <em>excepcional</em>.
-          </h2>
-
-          <div className="footer-fade">
-            <span className="eyebrow" style={{ marginBottom: '1.25rem' }}>Fale comigo</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {contacts.map(({ label, value, href }) => (
-                <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="footer-link" style={{ display: 'block' }}>
-                  <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{label}</span>
-                  <span style={{ fontSize: '1rem', wordBreak: 'break-word' }}>{value}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="footer-fade">
-            <span className="eyebrow" style={{ marginBottom: '1.25rem' }}>Redes</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {socials.map(({ label, href }) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer" className="footer-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
-                  {label} <ArrowUpRight size={14} />
-                </a>
-              ))}
-            </div>
-          </div>
+const Footer = () => (
+  <footer className="site-footer">
+    <div className="container site-footer__grid">
+      <div>
+        <div className="site-footer__logo">
+          <Logo size="lg" />
         </div>
-
-        <div className="footer-wordmark footer-fade" style={{
-          fontFamily: 'var(--font-heading)',
-          fontSize: 'clamp(3.5rem, 15vw, 13rem)',
-          lineHeight: 0.9,
-          letterSpacing: '-0.02em',
-          marginBottom: '2.5rem',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-        }}>
-          Patrick <em style={{ color: 'var(--accent-light)' }}>Gattini</em>
-        </div>
-
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '1rem',
-          paddingTop: '1.5rem',
-          borderTop: '1px solid var(--border-color)',
-          color: 'var(--text-secondary)',
-          fontSize: '0.82rem',
-        }}>
-          <p>© {new Date().getFullYear()} Patrick Gattini. Todos os direitos reservados.</p>
-          <p>Francisco Beltrão, PR — Brasil</p>
-        </div>
+        <p className="site-footer__tagline">Sites e sistemas que comunicam sem precisar de excessos.</p>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        .footer-link:hover, .footer-link:hover span { color: var(--accent-light) !important; }
-        @media (max-width: 1024px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; row-gap: 3rem !important; }
-          .footer-grid > .eyebrow { grid-column: 1 / -1; }
-        }
-        @media (max-width: 600px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
-      ` }} />
-    </footer>
-  );
-};
+      <div>
+        <h4 className="site-footer__title">Contatos</h4>
+        <ul className="site-footer__list">
+          {items.map(({ icon, label, href }) => (
+            <li key={label}>
+              <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+                {icon}
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
+          <li className="site-footer__place">
+            <MapPin size={18} strokeWidth={1.5} />
+            <span>
+              <strong>Base:</strong><br />
+              {contact.city}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="site-footer__bottom">
+      © {new Date().getFullYear()} Patrick Gattini. Todos os direitos reservados.
+    </div>
+
+    <style>{`
+      .site-footer { background: #000; color: #fff; padding-top: 80px; }
+      .site-footer__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding-bottom: 60px; }
+      .site-footer__logo { display: inline-block; padding: 0 2.25rem; }
+      .site-footer__tagline { margin-top: 2.5rem; max-width: 260px; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+      .site-footer__title { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.75rem; }
+      .site-footer__list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+      .site-footer__list a, .site-footer__place { display: flex; align-items: flex-start; gap: 0.9rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+      .site-footer__list a:hover { color: var(--blue-light); }
+      .site-footer__list svg { flex-shrink: 0; margin-top: 3px; color: #fff; }
+      .site-footer__place strong { color: #fff; font-weight: 500; }
+      .site-footer__bottom { border-top: 1px solid var(--line-dark); padding: 1.5rem; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+      @media (max-width: 760px) {
+        .site-footer__grid { grid-template-columns: 1fr; }
+        .site-footer__logo { padding: 0; }
+      }
+    `}</style>
+  </footer>
+);
 
 export default Footer;
