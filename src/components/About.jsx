@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GraduationCap, Briefcase, ArrowUpRight, MapPin } from 'lucide-react';
-import profileImg from '../images/image3.png';
+import profileImg from '../images/profile.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,17 +111,7 @@ const About = () => {
     >
       {/* ── Section Header ── */}
       <div style={{ marginBottom: '5rem' }}>
-        <span className="about-tag" style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          color: 'var(--text-secondary)',
-          fontWeight: 600,
-          textTransform: 'uppercase',
-          fontSize: '0.7rem',
-          letterSpacing: '0.3em',
-          marginBottom: '2rem',
-        }}>
+        <span className="about-tag section-tag" style={{ marginBottom: '2rem' }}>
           <MapPin size={11} />
           Francisco Beltrão, PR — Brasil
         </span>
@@ -129,7 +119,7 @@ const About = () => {
         <div className="about-heading-wrap" style={{ overflow: 'hidden' }}>
           <h2 style={{ fontSize: 'clamp(1.5rem, 8vw, 6rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
             <span className="about-heading-line" style={{ display: 'block' }}>ENGENHARIA DE</span>
-            <span className="about-heading-line" style={{ display: 'block', color: 'var(--text-secondary)' }}>
+            <span className="about-heading-line text-gradient" style={{ display: 'block' }}>
               SOLUÇÕES DIGITAIS.
             </span>
           </h2>
@@ -150,9 +140,11 @@ const About = () => {
           overflow: 'hidden',
           aspectRatio: '3/4',
           backgroundColor: 'var(--gray-dark)',
-          borderRadius: '2px',
+          borderRadius: '16px',
+          border: '1px solid var(--border-color)',
+          boxShadow: '0 30px 80px -30px var(--accent-glow)',
           position: 'relative',
-          clipPath: 'inset(0 0% 0 0)',
+          clipPath: 'inset(0 0% 0 0 round 16px)',
         }}>
           <img
             src={profileImg}
@@ -166,8 +158,21 @@ const About = () => {
               top: '0',
               left: '0',
               display: 'block',
+              objectPosition: 'center 30%',
+              filter: 'saturate(0.85) contrast(1.05)',
             }}
           />
+          {/* Blue tone overlay to integrate the photo with the palette */}
+          <div aria-hidden="true" style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(47,107,255,0.10) 0%, transparent 40%, rgba(5,8,15,0.8) 100%)',
+            pointerEvents: 'none',
+          }} />
+          <div style={{ position: 'absolute', left: '1.5rem', bottom: '1.5rem', right: '1.5rem', color: '#fff' }}>
+            <p style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>Patrick Gattini</p>
+            <p style={{ fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent-light)' }}>Full-Stack · Professor</p>
+          </div>
         </div>
 
         {/* Bio column */}
@@ -185,7 +190,7 @@ const About = () => {
           </div>
 
           <blockquote className="about-quote" style={{
-            borderLeft: '2px solid var(--border-color)',
+            borderLeft: '2px solid var(--accent-color)',
             paddingLeft: '1.75rem',
             fontStyle: 'italic',
             color: 'var(--text-secondary)',
@@ -212,7 +217,7 @@ const About = () => {
         {/* Education */}
         <div>
           <div className="cred-heading" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '3.5rem' }}>
-            <GraduationCap size={20} strokeWidth={1.5} style={{ color: 'var(--text-secondary)', flexShrink: 0 }} />
+            <GraduationCap size={20} strokeWidth={1.5} style={{ color: 'var(--accent-light)', flexShrink: 0 }} />
             <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
               Formação Acadêmica
             </h4>
@@ -226,7 +231,7 @@ const About = () => {
               <div
                 key={course}
                 className="timeline-item"
-                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid var(--border-color)' }}
+                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid rgba(47,107,255,0.35)' }}
               >
                 <p style={{ fontWeight: 600, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{course}</p>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -235,7 +240,7 @@ const About = () => {
                 <a
                   href="#"
                   style={{ fontSize: '0.7rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-secondary)', letterSpacing: '0.12em', textTransform: 'uppercase', transition: 'color 0.3s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-light)')}
                   onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
                 >
                   Ver certificado <ArrowUpRight size={12} />
@@ -248,7 +253,7 @@ const About = () => {
         {/* Experience */}
         <div>
           <div className="cred-heading" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '3.5rem' }}>
-            <Briefcase size={20} strokeWidth={1.5} style={{ color: 'var(--text-secondary)', flexShrink: 0 }} />
+            <Briefcase size={20} strokeWidth={1.5} style={{ color: 'var(--accent-light)', flexShrink: 0 }} />
             <h4 style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
               Experiência Profissional
             </h4>
@@ -278,7 +283,7 @@ const About = () => {
               <div
                 key={role}
                 className="timeline-item"
-                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid var(--border-color)' }}
+                style={{ paddingLeft: '1.75rem', borderLeft: '1px solid rgba(47,107,255,0.35)' }}
               >
                 <p style={{ fontWeight: 600, fontSize: '1.05rem', marginBottom: '0.5rem' }}>{role}</p>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.75rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>

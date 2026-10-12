@@ -80,7 +80,7 @@ const Portfolio = () => {
   return (
     <section id="portfolio" ref={containerRef} className="container" style={{ paddingBlock: 'clamp(60px, 12vw, 140px)' }}>
       <div ref={headerRef} style={{ marginBottom: 'clamp(3rem, 10vw, 7rem)' }}>
-        <div className="portfolio-header-line" style={{ width: '40px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '2.5rem' }} />
+        <div className="portfolio-header-line" style={{ width: '40px', height: '2px', background: 'var(--accent-gradient)', marginBottom: '2.5rem' }} />
 
         <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: 'clamp(2.2rem, 5.5vw, 4.5rem)', letterSpacing: '-0.05em', lineHeight: 1 }}>
@@ -111,9 +111,9 @@ const Portfolio = () => {
               backgroundColor: 'var(--gray-dark)',
               marginBottom: '2rem',
               position: 'relative',
-              borderRadius: '2px',
+              borderRadius: '14px',
               border: '1px solid var(--border-color)',
-              clipPath: 'inset(0 0% 0 0)',
+              clipPath: 'inset(0 0% 0 0 round 14px)',
             }}>
               <img
                 src={project.image}
@@ -124,7 +124,7 @@ const Portfolio = () => {
               <div className="project-overlay" style={{
                 position: 'absolute',
                 inset: 0,
-                backgroundColor: 'rgba(0,0,0,0.55)',
+                background: 'linear-gradient(180deg, rgba(5,8,15,0.25) 0%, rgba(20,50,140,0.65) 100%)',
                 opacity: 0,
                 transition: 'opacity 0.5s ease',
                 display: 'flex',
@@ -135,11 +135,12 @@ const Portfolio = () => {
                   width: '60px',
                   height: '60px',
                   borderRadius: '50%',
-                  backgroundColor: 'var(--text-primary)',
+                  background: 'var(--accent-gradient)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--bg-color)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 30px var(--accent-glow)',
                   transform: 'translateY(20px) scale(0.85)',
                   transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
                 }}>
@@ -149,7 +150,7 @@ const Portfolio = () => {
             </div>
 
             <div className="project-meta">
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.22em', marginBottom: '0.6rem', display: 'block' }}>
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--accent-light)', textTransform: 'uppercase', letterSpacing: '0.22em', marginBottom: '0.6rem', display: 'block' }}>
                 {project.category}
               </span>
               <h3 style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
@@ -168,7 +169,10 @@ const Portfolio = () => {
         .project-item:hover .project-img { transform: scale(1.06); }
         .project-item:hover .project-overlay { opacity: 1; }
         .project-item:hover .project-btn { transform: translateY(0) scale(1); }
-        .project-img { transition: transform 1.1s cubic-bezier(0.16,1,0.3,1); }
+        .project-img { transition: transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 0.6s ease; filter: saturate(0.9); }
+        .project-item:hover .project-img { filter: saturate(1); }
+        .project-meta h3 { transition: color 0.3s ease; }
+        .project-item:hover h3 { color: var(--accent-light); }
 
         .project-meta p { max-width: 440px; }
 

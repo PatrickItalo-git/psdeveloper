@@ -67,10 +67,10 @@ const Tech = () => {
           <div ref={animRef} style={{ 
             width: '100%', 
             aspectRatio: '4/3', 
-            borderRadius: '2px', 
+            borderRadius: '16px',
             overflow: 'hidden',
             border: '1px solid var(--border-color)',
-            backgroundColor: 'var(--gray-dark)',
+            background: 'radial-gradient(circle at center, rgba(47,107,255,0.14) 0%, var(--gray-dark) 70%)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -90,7 +90,7 @@ const Tech = () => {
                   style={{ 
                     width: 'clamp(16px, 4vw, 24px)', 
                     height: 'clamp(16px, 4vw, 24px)', 
-                    backgroundColor: 'var(--accent-color)', 
+                    background: 'var(--accent-gradient)', 
                     borderRadius: '2px' 
                   }} 
                 />
@@ -118,7 +118,7 @@ const Tech = () => {
           borderTop: '1px solid var(--border-color)'
         }}>
           <div style={{ flexShrink: 0 }}>
-            <h2 style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--gray-medium)' }}>STACK</h2>
+            <h2 style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--accent-light)' }}>STACK</h2>
           </div>
 
           <div style={{

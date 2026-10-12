@@ -92,7 +92,7 @@ const Navbar = () => {
           zIndex: 1001,
           padding: isScrolled ? '1rem 0' : '2rem 0',
           transition: 'padding 0.5s cubic-bezier(0.16,1,0.3,1), background-color 0.5s ease, border-bottom 0.5s ease',
-          backgroundColor: isScrolled ? 'rgba(8,8,8,0.94)' : 'transparent',
+          backgroundColor: isScrolled ? 'rgba(5,8,15,0.82)' : 'transparent',
           backdropFilter: isScrolled ? 'blur(24px)' : 'none',
           borderBottom: isScrolled ? '1px solid var(--border-color)' : 'none',
         }}
@@ -102,9 +102,23 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={handleLinkClick}
-            style={{ fontSize: '1.1rem', fontWeight: 800, letterSpacing: '-0.05em', color: 'var(--text-primary)', zIndex: 1002, position: 'relative' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 700, letterSpacing: '0.02em', color: 'var(--text-primary)', zIndex: 1002, position: 'relative' }}
           >
-            PATRICK<span style={{ color: 'var(--accent-color)' }}>.DEV</span>
+            <span style={{
+              width: '34px',
+              height: '34px',
+              borderRadius: '8px',
+              background: 'var(--accent-gradient)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#fff',
+              fontSize: '0.85rem',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              boxShadow: '0 6px 18px var(--accent-glow)',
+            }}>PG</span>
+            <span>PATRICK <span style={{ color: 'var(--accent-light)' }}>GATTINI</span></span>
           </Link>
 
           {/* Desktop nav */}
@@ -131,9 +145,9 @@ const Navbar = () => {
                     bottom: '-6px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '3px',
-                    height: '3px',
-                    borderRadius: '50%',
+                    width: '16px',
+                    height: '2px',
+                    borderRadius: '2px',
                     backgroundColor: 'var(--accent-color)',
                     display: 'block',
                   }} />

@@ -84,13 +84,13 @@ const CallToAction = () => {
     >
       <div className="container">
         <div style={{
-          backgroundColor: 'var(--gray-dark)',
+          background: 'radial-gradient(ellipse 70% 80% at 50% 0%, rgba(47,107,255,0.22) 0%, transparent 70%), linear-gradient(180deg, #0a1428 0%, #060b17 100%)',
           padding: 'clamp(3rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem)',
           textAlign: 'center',
           position: 'relative',
           overflow: 'hidden',
-          border: '1px solid var(--border-color)',
-          borderRadius: '2px',
+          border: '1px solid rgba(47,107,255,0.25)',
+          borderRadius: '20px',
         }}>
           {/* Top decorative line */}
           <div className="cta-border-line" style={{
@@ -99,14 +99,14 @@ const CallToAction = () => {
             left: 0,
             width: '100%',
             height: '1px',
-            backgroundColor: 'var(--text-primary)',
-            opacity: 0.12,
+            background: 'linear-gradient(90deg, transparent, var(--accent-light), transparent)',
+            opacity: 0.8,
           }} />
 
           <div style={{ overflow: 'hidden', marginBottom: '2.5rem' }}>
             <h2 style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', fontWeight: 700, lineHeight: 1.0, letterSpacing: '-0.05em' }}>
               <span className="cta-heading-line" style={{ display: 'block' }}>PRONTO PARA ESCALAR</span>
-              <span className="cta-heading-line" style={{ display: 'block', color: 'var(--text-secondary)' }}>SUA PRESENÇA DIGITAL?</span>
+              <span className="cta-heading-line text-gradient" style={{ display: 'block' }}>SUA PRESENÇA DIGITAL?</span>
             </h2>
           </div>
 
@@ -117,7 +117,7 @@ const CallToAction = () => {
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '3rem', marginBottom: '4.5rem' }}>
             {features.map(f => (
               <div key={f} className="cta-feature" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--text-primary)', display: 'inline-block', flexShrink: 0 }} />
+                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--accent-light)', display: 'inline-block', flexShrink: 0 }} />
                 {f}
               </div>
             ))}

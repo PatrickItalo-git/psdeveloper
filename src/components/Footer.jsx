@@ -96,7 +96,7 @@ const Footer = () => {
             <div style={{ overflow: 'hidden', marginBottom: '2rem' }}>
               <h2 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', letterSpacing: '-0.05em', lineHeight: 1.05 }}>
                 <span className="footer-h2-line" style={{ display: 'block' }}>VAMOS CRIAR</span>
-                <span className="footer-h2-line" style={{ display: 'block', color: 'var(--text-secondary)' }}>ALGO EXCEPCIONAL.</span>
+                <span className="footer-h2-line text-gradient" style={{ display: 'block' }}>ALGO EXCEPCIONAL.</span>
               </h2>
             </div>
             <p className="footer-sub" style={{ color: 'var(--text-secondary)', maxWidth: '380px', fontSize: '1.05rem', lineHeight: 1.7 }}>
@@ -173,7 +173,7 @@ const Footer = () => {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .footer-link:hover, .social-link:hover { color: var(--text-primary) !important; }
+        .footer-link:hover, .social-link:hover { color: var(--accent-light) !important; }
       ` }} />
     </footer>
   );

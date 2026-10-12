@@ -18,13 +18,13 @@ const WhatsAppButton = () => {
         right: '30px',
         width: '60px',
         height: '60px',
-        backgroundColor: 'var(--text-primary)',
-        color: 'var(--bg-color)',
+        background: 'var(--accent-gradient)',
+        color: '#ffffff',
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+        boxShadow: '0 10px 30px var(--accent-glow)',
         zIndex: 9000,
         textDecoration: 'none',
         border: '1px solid var(--border-color)'
@@ -38,7 +38,7 @@ const WhatsAppButton = () => {
         width: '100%',
         height: '100%',
         borderRadius: '50%',
-        border: '1px solid var(--text-primary)',
+        border: '1px solid var(--accent-light)',
         animation: 'pulseMinimal 3s infinite'
       }} />
       <style>{`

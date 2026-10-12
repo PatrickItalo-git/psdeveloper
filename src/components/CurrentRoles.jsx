@@ -107,20 +107,30 @@ const CurrentRoles = () => {
               flexDirection: 'column',
               gap: '2rem',
               padding: '2.5rem',
-              borderRadius: '2px',
+              borderRadius: '14px',
             }}
           >
 
-            <div className="role-img-wrap" style={{ overflow: 'hidden', height: '280px', borderRadius: '1px', clipPath: 'inset(0 0 0% 0)' }}>
+            <div className="role-img-wrap" style={{
+              overflow: 'hidden',
+              height: '220px',
+              borderRadius: '10px',
+              clipPath: 'inset(0 0 0% 0)',
+              backgroundColor: '#f4f7fc',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '2rem',
+            }}>
               <img
                 src={image}
-                alt={name}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                alt={'Logo ' + name}
+                style={{ maxWidth: '70%', maxHeight: '100%', objectFit: 'contain', display: 'block', borderRadius: '8px' }}
               />
             </div>
 
             <div className="role-content">
-              <span style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+              <span style={{ color: 'var(--accent-light)', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
                 {tag}
               </span>
               <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: 'var(--text-primary)', margin: '1rem 0 0.5rem', fontWeight: 700, letterSpacing: '-0.03em' }}>

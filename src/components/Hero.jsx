@@ -93,11 +93,11 @@ const Hero = () => {
             fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
             fontWeight: 600,
             letterSpacing: '0.32em',
-            color: 'var(--text-secondary)',
+            color: 'var(--accent-light)',
             marginBottom: '2rem',
             textTransform: 'uppercase',
           }}>
-            Desenvolvedor Full-Stack &amp; Estrategista Digital
+            Patrick Gattini — Desenvolvedor Full-Stack &amp; Estrategista Digital
           </div>
 
 
@@ -120,7 +120,7 @@ const Hero = () => {
               <span className="reveal-text" style={{ display: 'inline-block' }}>CRIANDO</span>
             </div>
             <div className="hero-line" style={{ overflow: 'hidden' }}>
-              <span className="reveal-text hero-parallax" style={{ display: 'inline-block', color: 'var(--gray-medium)' }}>
+              <span className="reveal-text hero-parallax text-gradient" style={{ display: 'inline-block' }}>
                 EXPERIÊNCIAS
               </span>
             </div>
@@ -167,9 +167,9 @@ const Hero = () => {
         right: '0',
         fontSize: 'clamp(8rem, 25vw, 24rem)',
         fontWeight: 900,
-        color: 'var(--text-primary)',
+        color: 'var(--accent-color)',
         zIndex: -1,
-        opacity: 0.025,
+        opacity: 0.05,
         userSelect: 'none',
         pointerEvents: 'none',
         fontFamily: 'var(--font-heading)',

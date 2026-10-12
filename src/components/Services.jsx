@@ -87,7 +87,7 @@ const Services = () => {
   return (
     <section id="servicos" ref={containerRef} className="container" style={{ borderTop: '1px solid var(--border-color)', width: '100%' }}>
       <div ref={headerRef} style={{ marginBottom: '6rem' }}>
-        <div className="services-header-line" style={{ width: '40px', height: '2px', backgroundColor: 'var(--text-primary)', marginBottom: '2.5rem' }} />
+        <div className="services-header-line" style={{ width: '40px', height: '2px', background: 'var(--accent-gradient)', marginBottom: '2.5rem' }} />
 
         <div style={{ overflow: 'hidden', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', letterSpacing: '-0.04em', lineHeight: 1 }}>
@@ -106,6 +106,8 @@ const Services = () => {
         gap: '1px',
         backgroundColor: 'var(--border-color)',
         border: '1px solid var(--border-color)',
+        borderRadius: '14px',
+        overflow: 'hidden',
         width: '100%',
       }}>
         {services.map((service, idx) => (
@@ -139,8 +141,19 @@ const Services = () => {
               {String(idx + 1).padStart(2, '0')}
             </span>
 
-            <div className="icon-container" style={{ color: 'var(--text-secondary)', marginBottom: '3rem', width: 'max-content' }}>
-              <service.icon size={36} strokeWidth={1.2} />
+            <div className="icon-container" style={{
+              color: 'var(--accent-light)',
+              marginBottom: '3rem',
+              width: '64px',
+              height: '64px',
+              borderRadius: '14px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'var(--accent-soft)',
+              border: '1px solid rgba(47,107,255,0.25)',
+            }}>
+              <service.icon size={28} strokeWidth={1.4} />
             </div>
 
             <h3 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', marginBottom: '1.25rem', color: 'var(--text-primary)', fontWeight: 600, letterSpacing: '-0.02em' }}>
@@ -171,8 +184,8 @@ const Services = () => {
 
         .service-card { transition: background-color 0.4s ease; }
         .service-card:hover { background-color: var(--gray-light) !important; }
-        .service-card:hover .arrow-icon { transform: translate(4px, -4px); color: var(--text-primary) !important; }
-        .service-card:hover .service-num { color: var(--text-primary) !important; }
+        .service-card:hover .arrow-icon { transform: translate(4px, -4px); color: var(--accent-light) !important; }
+        .service-card:hover .service-num { color: var(--accent-light) !important; }
         .arrow-icon { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), color 0.3s; }
         .service-num { transition: color 0.3s; }
       ` }} />
