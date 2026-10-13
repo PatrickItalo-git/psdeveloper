@@ -1,6 +1,9 @@
 // Central content for the whole site. Pages read from here so text stays consistent.
 import imgTeppa from '../images/proj_teppa.jpg';
 import imgPortabelly from '../images/proj_portabelly.jpg';
+import imgWatchdog from '../images/autorais/watchdog-cover.jpg';
+import imgWatchdog1 from '../images/autorais/watchdog-1.jpg';
+import imgWatchdog2 from '../images/autorais/watchdog-2.jpg';
 import uniparLogo from '../images/image.png';
 import italoLogo from '../images/image2.png';
 
@@ -54,6 +57,26 @@ export const projects = [
     description: [
       'A Portas Alvorada e a Portábelly se uniram, e o site precisava contar essa história com a sofisticação de uma marca de alto padrão.',
       'Ele apresenta os diferenciais da fábrica, a história da marca e a linha de portas (Kit BellyPlac, portas frisadas e lisas), com catálogo em PDF, feed do Instagram e atalhos para orçamento pelo WhatsApp.',
+    ],
+  },
+];
+
+// Products of my own (not client work).
+export const ownProjects = [
+  {
+    slug: 'watchdog',
+    title: 'WatchDog',
+    tagline: 'Segurança que pensa por você.',
+    segment: 'Segurança & Inteligência Artificial',
+    status: 'Em criação',
+    location: 'Francisco Beltrão - PR',
+    url: 'https://www.watchdog.agency/',
+    domain: 'watchdog.agency',
+    cover: imgWatchdog,
+    gallery: [imgWatchdog1, imgWatchdog2],
+    description: [
+      'A WatchDog é a minha empresa de tecnologia, sediada em Francisco Beltrão - PR. Ela conecta Inteligência Artificial ao sistema de câmeras de segurança que o cliente já tem: a IA analisa as imagens em tempo real e, ao detectar algo suspeito, envia um alerta com foto direto no WhatsApp em menos de 3 segundos.',
+      'Sem trocar equipamento e sem operador, o serviço atende comércios, indústrias, condomínios, logística, saúde e integradores de CFTV.',
     ],
   },
 ];

@@ -5,6 +5,7 @@ import Logo from './Logo.jsx';
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Projetos', href: '/projetos' },
+  { name: 'Autorais', href: '/autorais' },
   { name: 'Clientes', href: '/clientes' },
   { name: 'Serviços', href: '/servicos' },
   { name: 'Contato', href: '/contato' },
