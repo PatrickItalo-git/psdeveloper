@@ -10,7 +10,7 @@ const Home = () => (
       <Waves className="home-hero__waves" />
       <div className="home-hero__band">
         <h1 className="home-hero__title">Patrick Gattini</h1>
-        <p className="home-hero__sub">Desenvolvimento web com propósito</p>
+        <p className="home-hero__sub">Desenvolvimento com propósito</p>
       </div>
     </section>
 
